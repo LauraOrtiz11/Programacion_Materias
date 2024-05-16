@@ -1,164 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inscribir_materias;
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-/**
- *
- * @author VALENTINA
- */
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class ManejarArchivos {
-   
-    
-    static void crear(){
-        String dato; //variable para almacenar nombre y apellido
-        String cadena; //nombre;apellido;
-        FileWriter fichero = null;  //objeto principal (archivo)
-        PrintWriter linea = null;   //objeto de contenido de archivo
-        
-        try{
-            fichero = new FileWriter("d:/Prog2024.txt",true); //crea el archivo 
-            linea = new PrintWriter(fichero); //apunta el PrintWriter al archivo creado
-            // Inicia captura de datos del usuario
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Digite nombre:");
-            dato = br.readLine();
-            cadena = dato + "#";
-            System.out.println("Digite apellido:");
-            dato = br.readLine();
-            cadena = cadena + dato + "#";
-            System.out.println("Digite correo:");
-            dato = br.readLine();
-            cadena = cadena + dato + "#";
-            System.out.println("Digite edad:");
-            dato = br.readLine();
-            cadena = cadena + dato + "#";
-            
-            linea.println(cadena); //escribiendo en el archivo
-            
-      }catch(IOException e){
-           System.out.print("Error creando archivo");
-        }
-        finally{
-            try{
-                if(fichero != null){
-                    fichero.close();
-                }
-            }catch(IOException e1){
-                System.out.print("Error cerrando archivo");
+
+    public void crearArchivo() {
+        // Datos de ejemplo
+        String[] materias = {"Cálculo Integral 301", "Cálculo Integral 302", "Programación II 301", "Programación II 302", "Física II 301", "Física II 302", "Lectura M1", "Lectura T1", "Inglés M1", "Inglés T1", "Ciudadanía M1", "Ciudadanía T1"};
+        int[] creditos = {4, 4, 3, 3, 4, 4, 2, 2, 2, 2, 2, 2};
+        int[] cupos = {30, 30, 30, 30, 30, 30, 40, 40, 40, 40, 40, 40,};
+        String[] horarios = {"Martes: 11:00 - 13:00", "Miércoles: 11:00 - 13:00", "Lunes: 07:00 - 10:00", "Martes: 07:00 - 09:00", "Lunes: 10:00 - 12:00", "Lunes: 10:00 - 12:00", "Jueves: 07:00 - 09:00", "Jueves: 15:00 - 17:00", "Lunes: 10:00 - 12:00", "Jueves: 15:00 - 17:00", "Jueves: 11:00 - 13:00", "Viernes: 13:00 - 15:00"};
+
+        // Ruta del archivo
+        String rutaArchivo = "datos_materias.txt";
+
+        try {
+            // Crear FileWriter con el nombre del archivo
+            FileWriter fileWriter = new FileWriter(rutaArchivo);
+
+            // Crear BufferedWriter para escribir en el archivo
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            // Escribir los datos en el archivo
+            for (int i = 0; i < materias.length; i++) {
+                bufferedWriter.write("Materia: " + materias[i] + "\n");
+                bufferedWriter.write("Créditos: " + creditos[i] + "\n");
+                bufferedWriter.write("Cupos: " + cupos[i] + "\n");
+                bufferedWriter.write("Horario: " + horarios[i] + "\n");
+                bufferedWriter.write("\n"); // Separador entre cada entrada
             }
+
+            // Cerrar BufferedWriter
+            bufferedWriter.close();
+
+            System.out.println("Archivo creado satisfactoriamente.");
+
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
-        
-    
-    }
-    private static void printPaths(File file) throws IOException {
-		System.out.println("Absolute Path: " + file.getAbsolutePath());
-		System.out.println("Canonical Path: " + file.getCanonicalPath());
-		System.out.println("Path: " + file.getPath());
-    }    
-    static void mostrar(){
-        File archivo = null;  //apuntar al archivo almancenado DD
-        FileReader contenido = null;  //acceder a todo el contenido del archivo
-        BufferedReader linea = null; //accede linea a linea al contenido
-        
-        try{
-            archivo = new File("d:/Prog2024.txt");
-            //printPaths(archivo);
-            contenido = new FileReader(archivo);
-            linea = new BufferedReader(contenido);
-            
-            String cadena=""; //variable captura los datos del archivo
-            while((cadena=linea.readLine()) != null){ //recorre todo el archivo
-                String dato[] = cadena.split("#");
-                System.out.println("Nombre: "+ dato[0]);
-                System.out.println(" Apellido: "+ dato[1]);  
-                System.out.println(" Correo: "+ dato[2]);
-                System.out.println(" Edad: "+ dato[3]);
-                System.out.println(" ********** ");
-            }
-         }catch(IOException e){
-           System.out.print("Error abriendo archivo");
-        }
-        finally{
-            try{
-                if(contenido != null){
-                    contenido.close();
-                }
-            }catch(IOException e1){
-                System.out.print("Error cerrando archivo");
-            }
-        }
-    }
-    static void buscar(String filtro, int index){
-        File archivo = null;  //apuntar al archivo almancenado DD
-        FileReader contenido = null;  //acceder a todo el contenido del archivo
-        BufferedReader linea = null; //accede linea a linea al contenido
-        
-        try{
-            archivo = new File("d:/Prog2024.txt");
-            contenido = new FileReader(archivo);
-            linea = new BufferedReader(contenido);
-            
-            String cadena=""; //variable captura los datos del archivo
-            while((cadena=linea.readLine()) != null){ //recorre todo el archivo
-                String dato[] = cadena.split("#");
-                if(dato[index].contains(filtro)){
-                    System.out.println("Nombre: "+ dato[0]);
-                    System.out.println(" Apellido: "+ dato[1]);  
-                    System.out.println(" Correo: "+ dato[2]);
-                }   
-            }
-         }catch(IOException e){
-           System.out.print("Error consultando archivo");
-        }
-        finally{
-            try{
-                if(contenido != null){
-                    contenido.close();
-                }
-            }catch(IOException e1){
-                System.out.print("Error cerrando archivo");
-            }
-        }
-    }
-   
-    public static void main(String[] args) {
-           try {
-         
-            crear();
-            crear();
-            crear();
-           // mostrar();
-            //datos dt = new datos();
-            //dt.crear();
-            //Persona p = new Persona();.
-            //ArrayList<Persona> p = new ArrayList<Persona>();
-            //p = dt.mostrar();
-           
-            //for (int i = 0; i < p.size(); i++) {
-            //    System.out.println(p.get(i).getNombre());
-           //}
-            // System.out.println(p.getNombre());             
-             System.out.println("================");
-             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-             System.out.println("Digite criterio (0 - nombre / 1 -apellido / 2 - correo)");             
-             String dato = br.readLine();
-             int criterio = Integer.parseInt(dato);
-             System.out.println("Digite el elemento a buscar");             
-             dato = br.readLine();
-             
-             buscar(dato,criterio);
-             System.out.println("================");
-             
-         } catch (IOException ex) {
-             Logger.getLogger(ManejarArchivos.class.getName()).log(Level.SEVERE, null, ex);
-         }
     }
 }
-
-
-
