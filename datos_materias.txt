@@ -1,0 +1,60 @@
+Materia: Cálculo Integral 301
+Créditos: 4
+Cupos: 30
+Horario: Martes: 11:00 - 13:00
+
+Materia: Cálculo Integral 302
+Créditos: 4
+Cupos: 30
+Horario: Miércoles: 11:00 - 13:00
+
+Materia: Programación II 301
+Créditos: 3
+Cupos: 30
+Horario: Lunes: 07:00 - 10:00
+
+Materia: Programación II 302
+Créditos: 3
+Cupos: 30
+Horario: Martes: 07:00 - 09:00
+
+Materia: Física II 301
+Créditos: 4
+Cupos: 30
+Horario: Lunes: 10:00 - 12:00
+
+Materia: Física II 302
+Créditos: 4
+Cupos: 30
+Horario: Lunes: 10:00 - 12:00
+
+Materia: Lectura M1
+Créditos: 2
+Cupos: 40
+Horario: Jueves: 07:00 - 09:00
+
+Materia: Lectura T1
+Créditos: 2
+Cupos: 40
+Horario: Jueves: 15:00 - 17:00
+
+Materia: Inglés M1
+Créditos: 2
+Cupos: 40
+Horario: Lunes: 10:00 - 12:00
+
+Materia: Inglés T1
+Créditos: 2
+Cupos: 40
+Horario: Jueves: 15:00 - 17:00
+
+Materia: Ciudadanía M1
+Créditos: 2
+Cupos: 40
+Horario: Jueves: 11:00 - 13:00
+
+Materia: Ciudadanía T1
+Créditos: 2
+Cupos: 40
+Horario: Viernes: 13:00 - 15:00
+
