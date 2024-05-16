@@ -155,23 +155,10 @@ public class ManejarArchivos {
              System.out.println("================");
              
          } catch (IOException ex) {
-             Logger.getLogger(archivos.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(ManejarArchivos.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-}
 
 
