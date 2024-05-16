@@ -129,16 +129,34 @@ public class ManejarArchivos {
     }
 
     //Obtener datos por el ID 
+    
     public Materia obtenerMateriaPorID(int idMateria) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("datos_materias.txt"))) {
             String linea;
             while ((linea = bufferedReader.readLine()) != null) {
                 if (linea.startsWith("ID: " + idMateria)) {
-                    String nombre = bufferedReader.readLine().split(": ")[1];
-                    int creditos = Integer.parseInt(bufferedReader.readLine().split(": ")[1]);
-                    int cupos = Integer.parseInt(bufferedReader.readLine().split(": ")[1]);
-                    String horario = bufferedReader.readLine().split(": ")[1];
-                    bufferedReader.readLine();
+                    String nombre = null;
+                    int creditos = 0;
+                    int cupos = 0;
+                    String horario = null;
+    
+                    while ((linea = bufferedReader.readLine()) != null && !linea.isEmpty()) {
+                        String[] partes = linea.split(": ");
+                        switch (partes[0]) {
+                            case "Materia":
+                                nombre = partes[1];
+                                break;
+                            case "Créditos":
+                                creditos = Integer.parseInt(partes[1]);
+                                break;
+                            case "Cupos":
+                                cupos = Integer.parseInt(partes[1]);
+                                break;
+                            case "Horario":
+                                horario = partes[1];
+                                break;
+                        }
+                    }
                     return new Materia(nombre, creditos, cupos, horario);
                 }
             }
@@ -147,6 +165,7 @@ public class ManejarArchivos {
         }
         return null;
     }
+
     //Agregar la materia al archivo de Horario
      public void agregarMateriaAHorario(Materia materia) {
         String rutaHorario = "horario.txt";

@@ -1,72 +1,72 @@
-Materia: Cálculo Integral 301
+Materia: Cï¿½lculo Integral 301
 ID: 1
-Créditos: 4
+Crï¿½ditos: 4
 Cupos: 30
-Horario: Martes: 11:00 - 13:00
+Horario: Martes 
 
-Materia: Cálculo Integral 302
+Materia: Cï¿½lculo Integral 302
 ID: 2
-Créditos: 4
+Crï¿½ditos: 4
 Cupos: 30
-Horario: Miércoles: 11:00 - 13:00
+Horario: Miï¿½rcoles: 11:00 - 13:00
 
-Materia: Programación II 301
+Materia: Programaciï¿½n II 301
 ID: 3
-Créditos: 3
+Crï¿½ditos: 3
 Cupos: 30
 Horario: Lunes: 07:00 - 10:00
 
-Materia: Programación II 302
+Materia: Programaciï¿½n II 302
 ID: 4
-Créditos: 3
+Crï¿½ditos: 3
 Cupos: 30
 Horario: Martes: 07:00 - 09:00
 
-Materia: Física II 301
+Materia: Fï¿½sica II 301
 ID: 5
-Créditos: 4
+Crï¿½ditos: 4
 Cupos: 30
 Horario: Lunes: 10:00 - 12:00
 
-Materia: Física II 302
+Materia: Fï¿½sica II 302
 ID: 6
-Créditos: 4
+Crï¿½ditos: 4
 Cupos: 30
 Horario: Lunes: 10:00 - 12:00
 
 Materia: Lectura M1
 ID: 7
-Créditos: 2
+Crï¿½ditos: 2
 Cupos: 40
 Horario: Jueves: 07:00 - 09:00
 
 Materia: Lectura T1
 ID: 8
-Créditos: 2
+Crï¿½ditos: 2
 Cupos: 40
 Horario: Jueves: 15:00 - 17:00
 
-Materia: Inglés M1
+Materia: Inglï¿½s M1
 ID: 9
-Créditos: 2
+Crï¿½ditos: 2
 Cupos: 40
 Horario: Lunes: 10:00 - 12:00
 
-Materia: Inglés T1
+Materia: Inglï¿½s T1
 ID: 10
-Créditos: 2
+Crï¿½ditos: 2
 Cupos: 40
 Horario: Jueves: 15:00 - 17:00
 
-Materia: Ciudadanía M1
+Materia: Ciudadanï¿½a M1
 ID: 11
-Créditos: 2
+Crï¿½ditos: 2
 Cupos: 40
 Horario: Jueves: 11:00 - 13:00
 
-Materia: Ciudadanía T1
+Materia: Ciudadanï¿½a T1
 ID: 12
-Créditos: 2
+Crï¿½ditos: 2
 Cupos: 40
 Horario: Viernes: 13:00 - 15:00
 
