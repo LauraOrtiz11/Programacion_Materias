@@ -6,3 +6,15 @@ Materias Matriculadas:
     Creditos: 12
     Cupo Maximo: 40
     Horario: 10:00-11:00
+Codigo: 01
+Nombre: laura
+Creditos Maximos: 1
+Materias Matriculadas:
+Codigo: 1
+Nombre: laura
+Creditos Maximos: 3
+Materias Matriculadas:
+Codigo: 01
+Nombre: laura 
+Creditos Maximos: 3
+Materias Matriculadas:

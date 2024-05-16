@@ -2,10 +2,12 @@ package inscribir_materias;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class ManejarArchivos {
 
@@ -61,20 +63,21 @@ public class ManejarArchivos {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             
             // Captura los datos del estudiante
-            System.out.println("Digite codigo:");
+            System.out.println("Digite su codigo de estudiante:");
             String codigo = br.readLine();
             System.out.println("Digite nombre:");
             String nombre = br.readLine();
-            System.out.println("Digite creditos maximos:");
-            int creditosMaximos = Integer.parseInt(br.readLine());
+            int creditosMaximos = 18;
             
             Estudiante estudiante = new Estudiante(codigo, nombre, creditosMaximos);
-
+            String rutaMatricula = "datos_materias.txt";
             // Captura las materias
             while (true) {
                 System.out.println("¿Desea agregar una materia? (si/no):");
                 String respuesta = br.readLine();
                 if (!respuesta.equalsIgnoreCase("si")) {
+                    ManejarArchivos manejarArchivos = new ManejarArchivos();
+                    manejarArchivos.mostrarArchivo(rutaMatricula);
                     break;
                 }
                 
@@ -114,6 +117,17 @@ public class ManejarArchivos {
             } catch(IOException e1) {
                 System.out.print("Error cerrando archivo");
             }
+        }
+    }
+    
+    public void mostrarArchivo(String rutaMatricula) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaMatricula))) {
+            String linea;
+            while ((linea = bufferedReader.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
         }
     }
 }
