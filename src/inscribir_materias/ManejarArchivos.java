@@ -76,12 +76,13 @@ public class ManejarArchivos {
                 System.out.println("¿Desea agregar una materia? (si/no):");
                 String respuesta = br.readLine();
                 if (!respuesta.equalsIgnoreCase("si")) {
+                    break;
+                }else{
                     ManejarArchivos manejarArchivos = new ManejarArchivos();
                     manejarArchivos.mostrarArchivo(rutaMatricula);
-                    break;
                 }
                 
-                System.out.println("Digite nombre de la materia:");
+                System.out.println("Digite id de la materia:");
                 String nombreMateria = br.readLine();
                 System.out.println("Digite creditos de la materia:");
                 int creditos = Integer.parseInt(br.readLine());
