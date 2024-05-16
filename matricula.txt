@@ -1,20 +1,8 @@
-Codigo: 01
-Nombre: laura
+Codigo: 1021393412
+Nombre: Joseph
 Creditos Maximos: 18
 Materias Matriculadas:
-  - Nombre: Lectura T1
-    Creditos: 12
-    Cupo Maximo: 40
-    Horario: 10:00-11:00
-Codigo: 01
-Nombre: laura
-Creditos Maximos: 1
-Materias Matriculadas:
-Codigo: 1
-Nombre: laura
-Creditos Maximos: 3
-Materias Matriculadas:
-Codigo: 01
-Nombre: laura 
-Creditos Maximos: 3
+Codigo: jshahsk
+Nombre: smdks
+Creditos Maximos: 18
 Materias Matriculadas:
