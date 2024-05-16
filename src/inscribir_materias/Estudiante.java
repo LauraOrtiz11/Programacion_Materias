@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package inscribir_materias;
-import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
  * @author VALENTINA
  */
 
-public class Estudiante implements Serializable {
+public class Estudiante  {
     private String codigo;
     private String nombre;
     private ArrayList<Materia> materiasMatriculadas;
