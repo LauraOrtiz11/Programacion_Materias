@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author VALENTINA
  */
 
-public class Estudiante  {
+ class Estudiante {
     private String codigo;
     private String nombre;
     private ArrayList<Materia> materiasMatriculadas;
@@ -44,13 +44,12 @@ public class Estudiante  {
 
         materiasMatriculadas.add(materia);
         materia.incrementarMateriasMatriculadas();
-        System.out.println("Materia matriculada exitosamente.");
         return true;
     }
 
-    private boolean hayConflictoHorarios(Materia materia1, Materia materia2) {
-        // Lógica para verificar si hay conflicto de horarios entre dos materias
-        return false; // Necesitas implementar la lógica adecuada
+    boolean hayConflictoHorarios(Materia materia1, Materia materia2) {
+        // Implementar la lógica para verificar conflicto de horarios
+        return false;
     }
 
     private int calcularCreditosMatriculados() {
@@ -69,12 +68,11 @@ public class Estudiante  {
         return nombre;
     }
 
-    public ArrayList<Materia> getMateriasMatriculadas() {
-        return materiasMatriculadas;
-    }
-
     public int getCreditosMaximos() {
         return creditosMaximos;
     }
-}
 
+    public ArrayList<Materia> getMateriasMatriculadas() {
+        return materiasMatriculadas;
+    }
+}
