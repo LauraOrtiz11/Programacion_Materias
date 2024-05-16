@@ -75,4 +75,5 @@ import java.util.ArrayList;
     public ArrayList<Materia> getMateriasMatriculadas() {
         return materiasMatriculadas;
     }
+    
 }
