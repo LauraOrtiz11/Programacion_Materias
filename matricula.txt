@@ -18,15 +18,71 @@ Codigo: 01
 Nombre: Laura
 Creditos Maximos: 18
 Materias Matriculadas:
-Codigo: 01
-Nombre: Laura
+Codigo: 15
+Nombre: joseph
 Creditos Maximos: 18
 Materias Matriculadas:
-Codigo: 01
-Nombre: Laura
+Codigo: 12
+Nombre: JOAWPH
 Creditos Maximos: 18
 Materias Matriculadas:
-Codigo: 01
-Nombre: laURA
-Creditos Maximos: 15
+  - Nombre: null
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Mi�rcoles
+Codigo: 12
+Nombre: 456
+Creditos Maximos: 18
 Materias Matriculadas:
+Codigo: 1
+Nombre: joseph
+Creditos Maximos: 18
+Materias Matriculadas:
+  - Nombre: null
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Mi�rcoles
+  - Nombre: null
+    Creditos: 2
+    Cupo Maximo: 40
+    Horario: Jueves
+Codigo: 12
+Nombre: joseph
+Creditos Maximos: 18
+Materias Matriculadas:
+  - Nombre: null
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Mi�rcoles
+Codigo: 456
+Nombre: joseph
+Creditos Maximos: 18
+Materias Matriculadas:
+  - Nombre: null
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Martes
+  - Nombre: null
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Lunes
+Codigo: 45
+Nombre: joseph
+Creditos Maximos: 18
+Materias Matriculadas:
+  - Nombre: null
+    Creditos: 3
+    Cupo Maximo: 30
+    Horario: Martes
+  - Nombre: null
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Lunes
+Codigo: 45
+Nombre: p1
+Creditos Maximos: 45
+Materias Matriculadas:
+  - Nombre: null
+    Creditos: 2
+    Cupo Maximo: 40
+    Horario: Jueves
