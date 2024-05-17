@@ -15,7 +15,7 @@ import java.util.ArrayList;
     private String nombre;
     private ArrayList<Materia> materiasMatriculadas;
     private int creditosMaximos;
-
+    
     public Estudiante(String codigo, String nombre, int creditosMaximos) {
         this.codigo = codigo;
         this.nombre = nombre;

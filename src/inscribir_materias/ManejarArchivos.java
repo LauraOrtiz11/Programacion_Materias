@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 public class ManejarArchivos {
+    
     public void crearArchivo() {
         String[] materias = {"Cálculo Integral 301", "Cálculo Integral 302", "Programación II 301", "Programación II 302", "Física II 301", "Física II 302", "Lectura M1", "Lectura T1", "Inglés M1", "Inglés T1", "Ciudadanía M1", "Ciudadanía T1"};
         int[] id = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
@@ -15,6 +16,7 @@ public class ManejarArchivos {
         int[] cupos = {30, 30, 30, 30, 30, 30, 40, 40, 40, 40, 40, 40,};
         String[] horarios = {"Martes: 11:00 - 13:00", "Miércoles: 11:00 - 13:00", "Lunes: 07:00 - 10:00", "Martes: 07:00 - 09:00", "Lunes: 10:00 - 12:00", "Lunes: 10:00 - 12:00", "Jueves: 07:00 - 09:00", "Jueves: 15:00 - 17:00", "Lunes: 10:00 - 12:00", "Jueves: 15:00 - 17:00", "Jueves: 11:00 - 13:00", "Viernes: 13:00 - 15:00"};
         // Ruta del archivo de Materias
+        
         String rutaArchivo = "datos_materias.txt";
         try {
             FileWriter fileWriter = new FileWriter(rutaArchivo);
@@ -75,6 +77,7 @@ public class ManejarArchivos {
         linea.println("Nombre: " + estudiante.getNombre());
         linea.println("Creditos Maximos: " + estudiante.getCreditosMaximos());
         linea.println("Materias Matriculadas:");
+        
         for (Materia materia : estudiante.getMateriasMatriculadas()) {
             linea.println("  - Nombre: " + materia.getNombre());
             linea.println("    Creditos: " + materia.getCreditos());

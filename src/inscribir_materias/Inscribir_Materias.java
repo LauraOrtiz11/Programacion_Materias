@@ -12,10 +12,10 @@ package inscribir_materias;
 public class Inscribir_Materias {
     
     public static void main(String[] args) {        
-        
         ManejarArchivos manejarArchivos = new ManejarArchivos();
-        //manejarArchivos.crearArchivo();
-        manejarArchivos.matriEstudiante();
+        manejarArchivos.crearArchivo();
+        Ventana1 ven = new Ventana1();
+        ven.setVisible(true);
         
     }
 }
