@@ -1,20 +1,17 @@
-Nombre: null
-Horario: Martes
-Creditos: 3
 
 Nombre: null
-Horario: Lunes
+Horario: Martes
 Creditos: 4
 
 Nombre: null
-Horario: Jueves
-Creditos: 2
+Horario: Miércoles
+Creditos: 4
 
-Nombre: null
-Horario: Jueves
-Creditos: 2
+Nombre: Cálculo Integral 302
+Horario: Martes
+Creditos: 4
 
-Nombre: null
-Horario: Jueves
-Creditos: 2
+Nombre: Programación II 301
+Horario: Miércoles
+Creditos: 4
 

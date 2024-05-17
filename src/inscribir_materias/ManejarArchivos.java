@@ -110,33 +110,36 @@ public class ManejarArchivos {
     public Materia obtenerMateriaPorID(int idMateria) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("datos_materias.txt"))) {
             String linea;
-            String nombre = null; // Definir nombre fuera del bucle para asegurar su disponibilidad
+            String nombre = null;
+            int creditos = 0;
+            int cupos = 0;
+            String horario = null;
+            boolean found = false;
+    
             while ((linea = bufferedReader.readLine()) != null) {
                 if (linea.startsWith("ID: " + idMateria)) {
-                    int creditos = 0;
-                    int cupos = 0;
-                    String horario = null;
-    
-                    // Leer las siguientes líneas y asignar los valores correspondientes
-                    while ((linea = bufferedReader.readLine()) != null && !linea.isEmpty()) {
-                        String[] partes = linea.split(": ");
-                        switch (partes[0]) {
-                            case "Materia":
-                                nombre = partes[1];
-                                break;
-                            case "Créditos":
-                                creditos = Integer.parseInt(partes[1]);
-                                break;
-                            case "Cupos":
-                                cupos = Integer.parseInt(partes[1]);
-                                break;
-                            case "Horario":
-                                horario = partes[1];
-                                break;
-                        }
+                    found = true;
+                }
+                if (found) {
+                    String[] partes = linea.split(": ");
+                    switch (partes[0]) {
+                        case "Materia":
+                            nombre = partes[1];
+                            break;
+                        case "Créditos":
+                            creditos = Integer.parseInt(partes[1]);
+                            break;
+                        case "Cupos":
+                            cupos = Integer.parseInt(partes[1]);
+                            break;
+                        case "Horario":
+                            horario = partes[1];
+                            break;
                     }
-                    // Devolver el objeto Materia con los valores asignados
-                    return new Materia(nombre, creditos, cupos, horario);
+                    // Si todas las propiedades se han encontrado, se puede crear el objeto Materia
+                    if (nombre != null && horario != null && creditos > 0 && cupos > 0) {
+                        return new Materia(nombre, creditos, cupos, horario);
+                    }
                 }
             }
         } catch (IOException | NumberFormatException e) {
@@ -144,6 +147,7 @@ public class ManejarArchivos {
         }
         return null;
     }
+    
 
     //Agregar la materia al archivo de Horario
     public void agregarMateriaAHorario(Materia materia, int totalCreditos) {
