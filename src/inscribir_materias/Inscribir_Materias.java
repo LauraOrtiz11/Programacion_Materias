@@ -14,7 +14,7 @@ public class Inscribir_Materias {
     public static void main(String[] args) {        
         
         ManejarArchivos manejarArchivos = new ManejarArchivos();
-        //manejarArchivos.crearArchivo();
+        manejarArchivos.crearArchivo();
         manejarArchivos.matriEstudiante();
         
     }

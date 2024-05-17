@@ -1,4 +1,5 @@
 package inscribir_materias;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -8,17 +9,17 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 public class ManejarArchivos {
+
+    // Método para crear el archivo de materias
     public void crearArchivo() {
-        String[] materias = {"Cálculo Integral 301", "Cálculo Integral 302", "Programación II 301", "Programación II 302", "Física II 301", "Física II 302", "Lectura M1", "Lectura T1", "Inglés M1", "Inglés T1", "Ciudadanía M1", "Ciudadanía T1"};
+        String[] materias = {"Calculo-Integral-301", "Calculo-Integral-302", "Programacion-II-301", "Programacion-II-302", "Fisica-II-301", "Fisica-II-302", "Lectura-M1", "Lectura-T1", "Ingles-M1", "Ingles-T1", "Ciudadania-M1", "Ciudadania-T1"};
         int[] id = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         int[] creditos = {4, 4, 3, 3, 4, 4, 2, 2, 2, 2, 2, 2};
-        int[] cupos = {30, 30, 30, 30, 30, 30, 40, 40, 40, 40, 40, 40,};
-        String[] horarios = {"Martes: 11:00 - 13:00", "Miércoles: 11:00 - 13:00", "Lunes: 07:00 - 10:00", "Martes: 07:00 - 09:00", "Lunes: 10:00 - 12:00", "Lunes: 10:00 - 12:00", "Jueves: 07:00 - 09:00", "Jueves: 15:00 - 17:00", "Lunes: 10:00 - 12:00", "Jueves: 15:00 - 17:00", "Jueves: 11:00 - 13:00", "Viernes: 13:00 - 15:00"};
-        // Ruta del archivo de Materias
+        int[] cupos = {30, 30, 30, 30, 30, 30, 40, 40, 40, 40, 40, 40};
+        String[] horarios = {"Martes:11:00-13:00", "Miércoles:11:00-13:00", "Lunes:07:00-10:00", "Martes:07:00-09:00", "Lunes:10:00-12:00", "Lunes:10:00-12:00", "Jueves:07:00-09:00", "Jueves:15:00-17:00", "Lunes:10:00-12:00", "Jueves:15:00-17:00", "Jueves:11:00-13:00", "Viernes:13:00-15:00"};
         String rutaArchivo = "datos_materias.txt";
-        try {
-            FileWriter fileWriter = new FileWriter(rutaArchivo);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaArchivo))) {
             for (int i = 0; i < materias.length; i++) {
                 bufferedWriter.write("Materia: " + materias[i] + "\n");
                 bufferedWriter.write("ID: " + id[i] + "\n");
@@ -27,87 +28,88 @@ public class ManejarArchivos {
                 bufferedWriter.write("Horario: " + horarios[i] + "\n");
                 bufferedWriter.write("\n"); // Separador entre cada entrada
             }
-            bufferedWriter.close();
             System.out.println("Archivo creado satisfactoriamente.");
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
-    String rutaMatricula = "matricula.txt";
-    
+
+    private final String rutaMatricula = "matricula.txt";
+
+    // Método para manejar la matrícula del estudiante
     public void matriEstudiante() {
-    FileWriter fichero = null;
-    PrintWriter linea = null;
-    try {
-        fichero = new FileWriter(rutaMatricula, true);
-        linea = new PrintWriter(fichero);
-        // Inicia captura de datos del usuario
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // Captura los datos del estudiante
-        System.out.println("Digite codigo:");
-        String codigo = br.readLine();
-        System.out.println("Digite nombre:");
-        String nombre = br.readLine();
-        System.out.println("Digite creditos maximos:");
-        int creditosMaximos = Integer.parseInt(br.readLine());
-        Estudiante estudiante = new Estudiante(codigo, nombre, creditosMaximos);
-        // Captura las materias
-        while (true) {
-            System.out.println("¿Desea agregar una materia? (si/no):");
-            String respuesta = br.readLine();
-            if (!respuesta.equalsIgnoreCase("si")) {
-                break;
-            }
-            mostrarArchivo("datos_materias.txt");
-            System.out.println("Digite el ID de la materia:");
-            int idMateria = Integer.parseInt(br.readLine());
-            Materia materia = obtenerMateriaPorID(idMateria);
-            if (materia!= null) {
-                if (estudiante.matricularMateria(materia)) {
-                    agregarMateriaAHorario(materia, materia.getCreditos());
+        try (PrintWriter linea = new PrintWriter(new FileWriter(rutaMatricula, true))) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+            System.out.println("Digite código:");
+            String codigo = br.readLine();
+            System.out.println("Digite nombre:");
+            String nombre = br.readLine();
+            System.out.println("Digite créditos máximos:");
+            int creditosMaximos = Integer.parseInt(br.readLine());
+            // Estudiante estudiante = new Estudiante(codigo, nombre, creditosMaximos); // Necesitas definir la clase Estudiante
+    
+            // Escribir los detalles del estudiante en el archivo
+            linea.println("Código: " + codigo);
+            linea.println("Nombre: " + nombre);
+            linea.println("Créditos máximos: " + creditosMaximos);
+            linea.println("Materias:");
+    
+            while (true) {
+                System.out.println("¿Desea agregar una materia? (si/no):");
+                String respuesta = br.readLine();
+    
+                if (!respuesta.equalsIgnoreCase("si")) {
+                    break;
                 }
-            } else {
-                System.out.println("ID de materia no válido.");
+    
+                mostrarArchivo("datos_materias.txt");
+                System.out.println("Digite el ID de la materia:");
+                int idMateria = Integer.parseInt(br.readLine());
+                Materia materia = obtenerMateriaPorID(idMateria);
+    
+                // Dentro del método matriEstudiante en ManejarArchivos
+                if (materia != null) {
+                    try {
+                        // Escribir los detalles de la materia en el archivo
+                        linea.println("- Materia: " + materia.getNombre());
+                        linea.println("  Horario: " + materia.getHorario());
+                        linea.println("  Créditos: " + materia.getCreditos());
+                        agregarMateriaAHorario(materia); // Pasar el estudiante como parámetro
+                    } catch (Exception ex) {
+                        System.out.println("Error al matricular la materia: " + ex.getMessage());
+                    }
+                } else {
+                    System.out.println("ID de materia no válido.");
+                }
             }
-        }
-        // Escribiendo los datos del estudiante y sus materias en el archivo
-        linea.println("Codigo: " + estudiante.getCodigo());
-        linea.println("Nombre: " + estudiante.getNombre());
-        linea.println("Creditos Maximos: " + estudiante.getCreditosMaximos());
-        linea.println("Materias Matriculadas:");
-        for (Materia materia : estudiante.getMateriasMatriculadas()) {
-            linea.println("  - Nombre: " + materia.getNombre());
-            linea.println("    Creditos: " + materia.getCreditos());
-            linea.println("    Cupo Maximo: " + materia.getCupoMaximo());
-            linea.println("    Horario: " + materia.getHorario());
-        }
-    } catch (IOException e) {
-        System.out.print("Error creando archivo");
-    } finally {
-        try {
-            if (fichero!= null) {
-                fichero.close();
-            }
-        } catch (IOException e1) {
-            System.out.print("Error cerrando archivo");
+            System.out.println("Matrícula realizada correctamente.");
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error creando o cerrando el archivo: " + e.getMessage());
         }
     }
+
+    
+
+    // Método para mostrar el archivo de materi
 }
 
     //Lista de datos academicos
+
     public void mostrarArchivo(String rutaArchivo) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
+
             while ((linea = bufferedReader.readLine()) != null) {
                 System.out.println(linea);
             }
+
         } catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
     }
 
-    //Obtener datos por el ID 
-
+    // Método para obtener una materia por su ID
     public Materia obtenerMateriaPorID(int idMateria) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("datos_materias.txt"))) {
             String linea;
@@ -116,13 +118,16 @@ public class ManejarArchivos {
             int cupos = 0;
             String horario = null;
             boolean found = false;
-    
+
             while ((linea = bufferedReader.readLine()) != null) {
                 if (linea.startsWith("ID: " + idMateria)) {
                     found = true;
+                    continue; // Continuar leyendo las siguientes líneas
                 }
+
                 if (found) {
                     String[] partes = linea.split(": ");
+
                     switch (partes[0]) {
                         case "Materia":
                             nombre = partes[1];
@@ -136,31 +141,45 @@ public class ManejarArchivos {
                         case "Horario":
                             horario = partes[1];
                             break;
+                    }   
+                                       // Si todas las propiedades se han encontrado, se puede crear el objeto Materia
+                                       if (nombre != null && horario != null && creditos > 0 && cupos > 0) {
+                                        return new Materia(nombre, creditos, cupos, horario);
+                                    }
+                                }
+                            }
+            
+                        } catch (IOException | NumberFormatException e) {
+                            System.err.println("Error al leer el archivo o formato incorrecto: " + e.getMessage());
+                        }
+                        return null;
                     }
-                    // Si todas las propiedades se han encontrado, se puede crear el objeto Materia
-                    if (nombre != null && horario != null && creditos > 0 && cupos > 0) {
-                        return new Materia(nombre, creditos, cupos, horario);
+                
+                    // Método para agregar la materia al archivo de Horario
+                    public void agregarMateriaAHorario(Materia materia) {
+                        String rutaHorario = "horario.txt";
+                        try (FileWriter fileWriter = new FileWriter(rutaHorario, true);
+                             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                            int cupoDisponible = materia.getCupoMaximo() - materia.getMateriasMatriculadas();
+                            if (cupoDisponible > 0) { // Verificar si hay cupo disponible
+                                bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
+                                bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
+                                bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
+                                bufferedWriter.write("Cupo Disponible: " + cupoDisponible + "\n");
+                                bufferedWriter.write("\n");
+                
+                                // Incrementar el contador de materias matriculadas
+                                materia.incrementarMateriasMatriculadas();
+                                // Decrementar el cupo máximo disponible
+                                materia.decrementarCupo();
+                
+                                System.out.println("Materia matriculada correctamente.");
+                            } else {
+                                System.out.println("No hay cupo disponible para esta materia.");
+                            }
+                        } catch (IOException e) {
+                            System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
+                        }
                     }
                 }
-            }
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Error al leer el archivo o formato incorrecto: " + e.getMessage());
-        }
-        return null;
-    }
-    
-
-    //Agregar la materia al archivo de Horario
-    public void agregarMateriaAHorario(Materia materia, int totalCreditos) {
-        String rutaHorario = "horario.txt";
-        try (FileWriter fileWriter = new FileWriter(rutaHorario, true);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-            bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
-            bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
-            bufferedWriter.write("Creditos: " + totalCreditos + "\n");
-            bufferedWriter.write("\n"); // Separador entre cada entrada
-        } catch (IOException e) {
-            System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
-        }
-    }
-}
+                
