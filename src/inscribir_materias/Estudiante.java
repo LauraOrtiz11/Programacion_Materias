@@ -16,12 +16,13 @@ import java.util.ArrayList;
     private ArrayList<Materia> materiasMatriculadas;
     private int creditosMaximos;
 
-    public Estudiante(String codigo, String nombre, int creditosMaximos) {
+    public Estudiante(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.creditosMaximos = creditosMaximos;
+        this.creditosMaximos = 18; // Créditos máximos establecidos en 18
         this.materiasMatriculadas = new ArrayList<>();
     }
+    
 
     public boolean matricularMateria(Materia materia) {
         int creditosActuales = calcularCreditosMatriculados();
@@ -52,7 +53,7 @@ import java.util.ArrayList;
         return false;
     }
 
-    private int calcularCreditosMatriculados() {
+    public int calcularCreditosMatriculados() {
         int totalCreditos = 0;
         for (Materia materia : materiasMatriculadas) {
             totalCreditos += materia.getCreditos();

@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 public class ManejarArchivos {
 
@@ -63,10 +62,7 @@ public class ManejarArchivos {
             String codigo = br.readLine();
             System.out.println("Digite nombre:");
             String nombre = br.readLine();
-            System.out.println("Digite creditos maximos:");
-            int creditosMaximos = Integer.parseInt(br.readLine());
-
-            Estudiante estudiante = new Estudiante(codigo, nombre, creditosMaximos);
+            Estudiante estudiante = new Estudiante(codigo, nombre);
 
             // Captura las materias
             while (true) {

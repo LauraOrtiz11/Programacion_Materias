@@ -2,7 +2,7 @@ Materia: C�lculo Integral 301
 ID: 1
 Cr�ditos: 4
 Cupos: 30
-Horario: Martes 
+Horario: Martes: 11:00 - 13:00
 
 Materia: C�lculo Integral 302
 ID: 2

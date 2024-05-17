@@ -1,0 +1,84 @@
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Jueves
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Mi�rcoles
+
+Estudiante: Pepito
+Materia: inscribir_materias.Materia@15db9742
+Horario: Martes
+
+Estudiante: Pepito
+Materia: inscribir_materias.Materia@15db9742
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Martes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+
+Estudiante: Pepito
+Materia: null
+Horario: Viernes
+

@@ -1,0 +1,8 @@
+Estudiante: Laura
+Materia: null
+Horario: Viernes
+
+Estudiante: Laura
+Materia: null
+Horario: Martes
+

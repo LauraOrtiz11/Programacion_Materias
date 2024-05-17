@@ -6,11 +6,13 @@
 package inscribir_materias;
 
 
-/**
+/** 
  *
  * @author VALENTINA
  */
-class Materia {
+
+
+public class Materia {
     private String nombre;
     private int creditos;
     private int cupoMaximo;
