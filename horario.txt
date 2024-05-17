@@ -1,3 +1,20 @@
 Nombre: null
-Horario: Miércoles
+Horario: Martes
+Creditos: 3
+
+Nombre: null
+Horario: Lunes
+Creditos: 4
+
+Nombre: null
+Horario: Jueves
+Creditos: 2
+
+Nombre: null
+Horario: Jueves
+Creditos: 2
+
+Nombre: null
+Horario: Jueves
+Creditos: 2
 
