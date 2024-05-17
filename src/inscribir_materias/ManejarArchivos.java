@@ -88,9 +88,14 @@ public class ManejarArchivos {
             System.err.println("Error creando o cerrando el archivo: " + e.getMessage());
         }
     }
+
     
 
-    // Método para mostrar el archivo de materias
+    // Método para mostrar el archivo de materi
+}
+
+    //Lista de datos academicos
+
     public void mostrarArchivo(String rutaArchivo) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
