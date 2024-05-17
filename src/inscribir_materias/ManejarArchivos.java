@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
 public class ManejarArchivos {
     public void crearArchivo() {
         String[] materias = {"Cálculo Integral 301", "Cálculo Integral 302", "Programación II 301", "Programación II 302", "Física II 301", "Física II 302", "Lectura M1", "Lectura T1", "Inglés M1", "Inglés T1", "Ciudadanía M1", "Ciudadanía T1"};
@@ -93,6 +93,7 @@ public class ManejarArchivos {
         }
     }
 }
+
     //Lista de datos academicos
     public void mostrarArchivo(String rutaArchivo) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
