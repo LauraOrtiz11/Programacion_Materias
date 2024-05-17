@@ -1,62 +1,6 @@
-Codigo: 1021393412
-Nombre: Joseph
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: jshahsk
-Nombre: smdks
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: 1
-Nombre: 2
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: 01
-Nombre: Laura
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: 01
-Nombre: Laura
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: 15
-Nombre: joseph
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: 12
-Nombre: JOAWPH
-Creditos Maximos: 18
-Materias Matriculadas:
-  - Nombre: null
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Miércoles
-Codigo: 12
-Nombre: 456
-Creditos Maximos: 18
-Materias Matriculadas:
-Codigo: 1
-Nombre: joseph
-Creditos Maximos: 18
-Materias Matriculadas:
-  - Nombre: null
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Miércoles
-  - Nombre: null
-    Creditos: 2
-    Cupo Maximo: 40
-    Horario: Jueves
-Codigo: 12
-Nombre: joseph
-Creditos Maximos: 18
-Materias Matriculadas:
-  - Nombre: null
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Miércoles
-Codigo: 456
-Nombre: joseph
-Creditos Maximos: 18
+Codigo: 45
+Nombre: jsoa
+Creditos Maximos: 15
 Materias Matriculadas:
   - Nombre: null
     Creditos: 4
@@ -65,24 +9,16 @@ Materias Matriculadas:
   - Nombre: null
     Creditos: 4
     Cupo Maximo: 30
-    Horario: Lunes
-Codigo: 45
-Nombre: joseph
+    Horario: Miércoles
+Codigo: 47
+Nombre: jos
 Creditos Maximos: 18
 Materias Matriculadas:
-  - Nombre: null
-    Creditos: 3
-    Cupo Maximo: 30
-    Horario: Martes
-  - Nombre: null
+  - Nombre: Cálculo Integral 302
     Creditos: 4
     Cupo Maximo: 30
-    Horario: Lunes
-Codigo: 45
-Nombre: p1
-Creditos Maximos: 45
-Materias Matriculadas:
-  - Nombre: null
-    Creditos: 2
-    Cupo Maximo: 40
-    Horario: Jueves
+    Horario: Martes
+  - Nombre: Programación II 301
+    Creditos: 4
+    Cupo Maximo: 30
+    Horario: Miércoles
