@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inscribir_materias;
+package inscribir_materias.Ventanas;
+
+import inscribir_materias.Estudiante;
 
 /**
  *
@@ -140,6 +142,9 @@ public class Ventana1 extends javax.swing.JFrame {
         String codigo =TextCodigo.getText();
         String Nombre = TextNombre_Estudiante.getText();
         Estudiante obj = new Estudiante(codigo, Nombre, 18);
+        
+        Lista_Materias listaMaterias = new Lista_Materias();
+        listaMaterias.setVisible(true);
         
     }//GEN-LAST:event_BotonInscribirActionPerformed
 

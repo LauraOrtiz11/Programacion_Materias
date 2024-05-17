@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inscribir_materias;
 
-
-/**
- *
- * @author VALENTINA
- */
-class Materia {
+public class Materia {
     private String nombre;
     private int creditos;
     private int cupoMaximo;
@@ -23,6 +13,10 @@ class Materia {
         this.cupoMaximo = cupoMaximo;
         this.horario = horario;
         this.materiasMatriculadas = 0;
+    }
+
+    // Constructor vacío
+    public Materia() {
     }
 
     public String getNombre() {
@@ -47,5 +41,9 @@ class Materia {
 
     public void incrementarMateriasMatriculadas() {
         this.materiasMatriculadas++;
+    }
+    
+    public void decrementarCupo() {
+        this.cupoMaximo--;
     }
 }

@@ -1,64 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inscribir_materias;
-import java.util.ArrayList;
-/**
- *
- * @author VALENTINA
- */
 
- class Estudiante {
+import java.util.ArrayList;
+
+public class Estudiante {
     private String codigo;
     private String nombre;
     private ArrayList<Materia> materiasMatriculadas;
     private int creditosMaximos;
     
     public Estudiante(String codigo, String nombre, int creditosMaximos) {
+        // Validación de datos al construir el objeto Estudiante
+        if (codigo == null || codigo.isEmpty()) {
+            throw new IllegalArgumentException("El código de estudiante no puede estar vacío.");
+        }
+        if (nombre == null || nombre.isEmpty()) {
+            throw new IllegalArgumentException("El nombre de estudiante no puede estar vacío.");
+        }
+        if (creditosMaximos <= 0) {
+            throw new IllegalArgumentException("Los créditos máximos deben ser un valor positivo.");
+        }
+        
         this.codigo = codigo;
         this.nombre = nombre;
         this.creditosMaximos = creditosMaximos;
         this.materiasMatriculadas = new ArrayList<>();
     }
 
-    public boolean matricularMateria(Materia materia) {
-        int creditosActuales = calcularCreditosMatriculados();
-        if (creditosActuales + materia.getCreditos() > creditosMaximos) {
-            System.out.println("El estudiante excede el número máximo de créditos.");
-            return false;
-        }
-
-        for (Materia matricula : materiasMatriculadas) {
-            if (hayConflictoHorarios(matricula, materia)) {
-                System.out.println("Hay conflicto de horarios con otra materia matriculada.");
-                return false;
-            }
-        }
-
-        if (materia.getMateriasMatriculadas() >= materia.getCupoMaximo()) {
-            System.out.println("La materia ha alcanzado su cupo máximo.");
-            return false;
-        }
-
-        materiasMatriculadas.add(materia);
-        materia.incrementarMateriasMatriculadas();
+    public boolean matricularMateria(Materia materia) throws Exception {
+        // Implementa la lógica para matricular una materia aquí
         return true;
     }
 
-    boolean hayConflictoHorarios(Materia materia1, Materia materia2) {
-        // Implementar la lógica para verificar conflicto de horarios
-        return false;
-    }
-
-    private int calcularCreditosMatriculados() {
-        int totalCreditos = 0;
-        for (Materia materia : materiasMatriculadas) {
-            totalCreditos += materia.getCreditos();
-        }
-        return totalCreditos;
-    }
+    // Otros métodos de la clase Estudiante
 
     public String getCodigo() {
         return codigo;
@@ -75,4 +48,4 @@ import java.util.ArrayList;
     public ArrayList<Materia> getMateriasMatriculadas() {
         return materiasMatriculadas;
     }
-}
+}   
