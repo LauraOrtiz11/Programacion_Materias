@@ -93,7 +93,7 @@ public class ManejarArchivos {
         }
     }
 }
-    String rutaArchivo = "datos_materias.txt";
+
     //Lista de datos academicos
     public void mostrarArchivo(String rutaArchivo) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {

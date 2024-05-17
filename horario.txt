@@ -1,0 +1,17 @@
+
+Nombre: null
+Horario: Martes
+Creditos: 4
+
+Nombre: null
+Horario: Miércoles
+Creditos: 4
+
+Nombre: Cálculo Integral 302
+Horario: Martes
+Creditos: 4
+
+Nombre: Programación II 301
+Horario: Miércoles
+Creditos: 4
+
