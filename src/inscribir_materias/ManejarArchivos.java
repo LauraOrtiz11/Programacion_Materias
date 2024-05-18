@@ -10,7 +10,7 @@ public class ManejarArchivos {
 
     // Método para crear el archivo de materias
     public void crearArchivo() {
-        String[] materias = {"Calculo-Integral-301", "Calculo-Integral-302", "Programacion-II-301", "Programacion-II-302", "Fisica-II-301", "Fisica-II-302", "Lectura-M1", "Lectura-T1", "Ingles-M1", "Ingles-T1", "Ciudadania-M1", "Ciudadania-T1"};
+        String[] materias = {"Calculo-Integral-301", "Calculo-Integral-302", "Programacºion-II-301", "Programacion-II-302", "Fisica-II-301", "Fisica-II-302", "Lectura-M1", "Lectura-T1", "Ingles-M1", "Ingles-T1", "Ciudadania-M1", "Ciudadania-T1"};
         int[] id = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         int[] creditos = {4, 4, 3, 3, 4, 4, 2, 2, 2, 2, 2, 2};
         int[] cupos = {30, 30, 30, 30, 30, 30, 40, 40, 40, 40, 40, 40};

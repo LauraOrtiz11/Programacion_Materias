@@ -77,7 +77,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     private void BotonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInscribirActionPerformed
 
-        String codigo =TextCodigo.getText();
+        String codigo = TextCodigo.getText();
         String Nombre = TextNombre_Estudiante.getText();
         Estudiante obj = new Estudiante(codigo, Nombre, 18);
         

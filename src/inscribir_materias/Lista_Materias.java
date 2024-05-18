@@ -6,7 +6,6 @@
 package inscribir_materias;
 
 
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -108,12 +107,10 @@ public class Lista_Materias extends javax.swing.JFrame {
     
         // Convierte el texto a un número entero
             int idMateria = Integer.parseInt(text);
-    
         // Aquí puedes usar idMateria como necesites
-            System.out.println("El ID de la materia es: " + idMateria);
         } catch (NumberFormatException e) {
-        // Maneja la excepción si el texto no es un número válido
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+        // Maneja la excepción si el texto no es un número válido            
+             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.PLAIN_MESSAGE);
         }
         
     }//GEN-LAST:event_ButonAñadirActionPerformed

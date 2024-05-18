@@ -9,7 +9,6 @@ public class Estudiante {
     private int creditosMaximos;
     
     public Estudiante(String codigo, String nombre, int creditosMaximos) {
-        // Validación de datos al construir el objeto Estudiante
         if (codigo == null || codigo.isEmpty()) {
             throw new IllegalArgumentException("El código de estudiante no puede estar vacío.");
         }
@@ -22,16 +21,29 @@ public class Estudiante {
         
         this.codigo = codigo;
         this.nombre = nombre;
-        this.creditosMaximos = creditosMaximos;
+        this.creditosMaximos = 18;
         this.materiasMatriculadas = new ArrayList<>();
     }
 
-    public boolean matricularMateria(Materia materia) throws Exception {
-        // Implementa la lógica para matricular una materia aquí
-        return true;
+    public boolean matricularMateria(Materia materia) {
+        if (materia != null && creditosMaximos >= materia.getCreditos() && materia.getCupoMaximo() > 0) {
+            for (Materia inscrita : materiasMatriculadas) {
+                if (materia.conflictoHorario(inscrita)) {
+                    System.out.println("Conflicto de horario con otra materia inscrita.");
+                    return false;
+                }
+            }
+            creditosMaximos -= materia.getCreditos();
+            materiasMatriculadas.add(materia);
+            materia.decrementarCupo();
+            return true;
+        } else {
+            System.out.println("No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.");
+            return false;
+        }
     }
 
-    // Otros métodos de la clase Estudiante
+    // Getters and other methods
 
     public String getCodigo() {
         return codigo;
@@ -48,4 +60,4 @@ public class Estudiante {
     public ArrayList<Materia> getMateriasMatriculadas() {
         return materiasMatriculadas;
     }
-}   
+}
