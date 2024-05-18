@@ -25,25 +25,7 @@ public class Estudiante {
         this.materiasMatriculadas = new ArrayList<>();
     }
 
-    public boolean matricularMateria(Materia materia) {
-        if (materia != null && creditosMaximos >= materia.getCreditos() && materia.getCupoMaximo() > 0) {
-            for (Materia inscrita : materiasMatriculadas) {
-                if (materia.conflictoHorario(inscrita)) {
-                    System.out.println("Conflicto de horario con otra materia inscrita.");
-                    return false;
-                }
-            }
-            creditosMaximos -= materia.getCreditos();
-            materiasMatriculadas.add(materia);
-            materia.decrementarCupo();
-            return true;
-        } else {
-            System.out.println("No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.");
-            return false;
-        }
-    }
 
-    // Getters and other methods
 
     public String getCodigo() {
         return codigo;

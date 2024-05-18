@@ -110,19 +110,13 @@ public class Lista_Materias extends javax.swing.JFrame {
     
             // Convierte el texto a un número entero
             int idMateria = Integer.parseInt(text);
-<<<<<<< HEAD
-        // Aquí puedes usar idMateria como necesites
-        } catch (NumberFormatException e) {
-        // Maneja la excepción si el texto no es un número válido            
-             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.PLAIN_MESSAGE);
-=======
     
             // Procesa la materia
             procesarMateria(idMateria);
         } catch (NumberFormatException e) {
             // Maneja la excepción si el texto no es un número válido
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
->>>>>>> cdd0caad9f046f26dfc81d88ce052a2b4eeda721
+    
         }
         
     }//GEN-LAST:event_ButonAñadirActionPerformed
