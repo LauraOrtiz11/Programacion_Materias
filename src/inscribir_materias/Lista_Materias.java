@@ -176,50 +176,80 @@ public class Lista_Materias extends javax.swing.JFrame {
             textAreaMaterias.append("Error al leer el archivo: " + e.getMessage() + "\n");
         }
     }
-    private void procesarMateria(int idMateria) {
-       Materia materia = obtenerMateriaPorID(idMateria);
+   private void procesarMateria(int idMateria) {
+    Materia materia;
 
-        if (materia != null) {
-            // Verificar si la materia ya fue inscrita anteriormente
-            if (materiasInscritas.contains(materia)) {
-                JOptionPane.showMessageDialog(this, "Ya está inscrito en esta materia.", "Error", JOptionPane.ERROR_MESSAGE);
-                return; // Salir del método
-            }
-
-            // Verificar conflicto de horario
-            boolean conflicto = false;
-            for (Materia inscrita : materiasInscritas) {
-                if (materia.conflictoHorario(inscrita)) {
-                    conflicto = true;
-                    break;
-                }
-            }
-
-            if (conflicto) {
-                JOptionPane.showMessageDialog(this, "Conflicto de horario con otra materia inscrita.", "Error", JOptionPane.ERROR_MESSAGE);
-                return; // Salir del método
-            }
-
-            // Verificar si hay créditos suficientes y cupos disponibles
-            if (creditosMaximos >= materia.getCreditos() && materia.getCupoMaximo() > 0) {
-                creditosMaximos -= materia.getCreditos();
-                textAreaMaterias.append("- Materia: " + materia.getNombre() + "\n");
-                textAreaMaterias.append("  Horario: " + materia.getHorario() + "\n");
-                textAreaMaterias.append("  Créditos: " + materia.getCreditos() + "\n");
-                agregarMateriaAHorario(materia);
-                materiasInscritas.add(materia); // Agregar la materia a la lista de inscritas
-
-                JOptionPane.showMessageDialog(this, "Materia matriculada correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
-
-                // Guardar la información en el archivo de matrícula
-                guardarEnArchivoMatricula(materia);
-            } else {
-                JOptionPane.showMessageDialog(this, "No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "ID de materia no válido.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    if (idMateria == 1) {
+        materia = new Materia("Calculo-Integral-301", 4, 30, "Martes:11:00-13:00");
+    } else if (idMateria == 2) {
+        materia = new Materia("Calculo-Integral-302", 4, 30, "Miércoles:11:00-13:00");
+    } else if (idMateria == 3) {
+        materia = new Materia("Programacion-II-301", 3, 30, "Lunes:07:00-10:00");
+    } else if (idMateria == 4) {
+        materia = new Materia("Programacion-II-302", 3, 30, "Martes:07:00-09:00");
+    } else if (idMateria == 5) {
+        materia = new Materia("Fisica-II-301", 4, 30, "Lunes:10:00-12:00");
+    } else if (idMateria == 6) {
+        materia = new Materia("Fisica-II-302", 4, 30, "Lunes:10:00-12:00");
+    } else if (idMateria == 7) {
+        materia = new Materia("Lectura-M1", 2, 40, "Jueves:07:00-09:00");
+    } else if (idMateria == 8) {
+        materia = new Materia("Lectura-T1", 2, 40, "Jueves:15:00-17:00");
+    } else if (idMateria == 9) {
+        materia = new Materia("Ingles-M1", 2, 40, "Lunes:10:00-12:00");
+   } else if (idMateria == 10) {
+        materia = new Materia("Ingles-T1", 2, 40, "Jueves:15:00-17:00");
+    } else if (idMateria == 11) {
+        materia = new Materia("Ciudadania-M1", 2, 40, "Jueves:11:00-13:00");
+    } else if (idMateria == 12) { 
+        materia = new Materia("Ciudadania-T1", 2, 40, "Viernes:13:00-15:00");
+    } else {
+        JOptionPane.showMessageDialog(this, "ID de materia no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método si el ID no es válido
     }
+
+    if (materia != null) {
+        // Verificar si la materia ya fue inscrita anteriormente
+        if (materiasInscritas.contains(materia)) {
+            JOptionPane.showMessageDialog(this, "Ya está inscrito en esta materia.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método
+        }
+
+        // Verificar conflicto de horario
+        boolean conflicto = false;
+        for (Materia inscrita : materiasInscritas) {
+            if (materia.conflictoHorario(inscrita)) {
+                conflicto = true;
+                break;
+            }
+        }
+
+        if (conflicto) {
+            JOptionPane.showMessageDialog(this, "Conflicto de horario con otra materia inscrita.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método
+        }
+
+        // Verificar si hay créditos suficientes y cupos disponibles
+        if (creditosMaximos >= materia.getCreditos() && materia.getCupoMaximo() > 0) {
+            creditosMaximos -= materia.getCreditos();
+            textAreaMaterias.append("- Materia: " + materia.getNombre() + "\n");
+            textAreaMaterias.append("  Horario: " + materia.getHorario() + "\n");
+            textAreaMaterias.append("  Créditos: " + materia.getCreditos() + "\n");
+            agregarMateriaAHorario(materia);
+            materiasInscritas.add(materia); // Agregar la materia a la lista de inscritas
+
+            JOptionPane.showMessageDialog(this, "Materia matriculada correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+            // Guardar la información en el archivo de matrícula
+            guardarEnArchivoMatricula(materia);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "ID de materia no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
     private void guardarEnArchivoMatricula(Materia materia) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaMatricula, true))) {
             bufferedWriter.write("Materia: " + materia.getNombre() + "\n");

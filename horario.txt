@@ -1,5 +1,10 @@
-Nombre: Calculo-Integral-302
+Nombre: Calculo-Integral-301
 Horario: Martes:11:00-13:00
 Créditos: 4
 Cupo Disponible: 29
+
+Nombre: Ciudadania-T1
+Horario: Viernes:13:00-15:00
+Créditos: 2
+Cupo Disponible: 39
 
