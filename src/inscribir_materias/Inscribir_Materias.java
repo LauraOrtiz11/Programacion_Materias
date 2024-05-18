@@ -5,17 +5,24 @@
  */
 package inscribir_materias;
 
+import Ventanas.Ventana1;
+
 /**
  * @author VALENTINA
  */
 
 public class Inscribir_Materias {
     
-    public static void main(String[] args) {        
+    public static void main(String[] args) {  
         
         ManejarArchivos manejarArchivos = new ManejarArchivos();
-        //manejarArchivos.crearArchivo();
-        manejarArchivos.matriEstudiante();
+        manejarArchivos.crearArchivo();
+        //manejarArchivos.matriEstudiante();
+        Ventana1 ven = new Ventana1();
+        ven.setVisible(true);
+
+        
+
         
     }
 }

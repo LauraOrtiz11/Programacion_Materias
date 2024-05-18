@@ -1,24 +1,4 @@
-Codigo: 45
-Nombre: jsoa
-Creditos Maximos: 15
-Materias Matriculadas:
-  - Nombre: null
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Martes
-  - Nombre: null
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Miércoles
-Codigo: 47
-Nombre: jos
-Creditos Maximos: 18
-Materias Matriculadas:
-  - Nombre: Cálculo Integral 302
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Martes
-  - Nombre: Programación II 301
-    Creditos: 4
-    Cupo Maximo: 30
-    Horario: Miércoles
+Materia: Calculo-Integral-302
+Horario: Martes:11:00-13:00
+CrÃ©ditos: 4
+

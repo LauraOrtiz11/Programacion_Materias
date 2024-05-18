@@ -1,17 +1,5 @@
-
-Nombre: null
-Horario: Martes
-Creditos: 4
-
-Nombre: null
-Horario: Miércoles
-Creditos: 4
-
-Nombre: Cálculo Integral 302
-Horario: Martes
-Creditos: 4
-
-Nombre: Programación II 301
-Horario: Miércoles
-Creditos: 4
+Nombre: Calculo-Integral-302
+Horario: Martes:11:00-13:00
+CrÃ©ditos: 4
+Cupo Disponible: 29
 
