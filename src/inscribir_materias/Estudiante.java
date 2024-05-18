@@ -7,7 +7,7 @@ public class Estudiante {
     private String nombre;
     private ArrayList<Materia> materiasMatriculadas;
     private int creditosMaximos;
-
+    
     public Estudiante(String codigo, String nombre, int creditosMaximos) {
         // Validación de datos al construir el objeto Estudiante
         if (codigo == null || codigo.isEmpty()) {
@@ -48,4 +48,4 @@ public class Estudiante {
     public ArrayList<Materia> getMateriasMatriculadas() {
         return materiasMatriculadas;
     }
-}
+}   

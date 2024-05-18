@@ -103,6 +103,10 @@ public void matriEstudiante() {
     }
 }
 
+    // Método para mostrar el archivo de materia
+
+    //Lista de datos academicos
+
     // Método para mostrar el archivo de materias
     public void mostrarArchivo(String rutaArchivo) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -131,6 +135,68 @@ public void matriEstudiante() {
     
                 // Si la línea comienza con "ID: ", es una línea de ID
                 if (linea.startsWith("ID: " + idMateria)) {
+                    found = true;
+                    continue; // Continuar leyendo las siguientes líneas
+                }
+
+                if (found) {
+                    String[] partes = linea.split(": ");
+
+                    switch (partes[0]) {
+                        case "Materia":
+                            nombre = partes[1];
+                            break;
+                        case "Créditos":
+                            creditos = Integer.parseInt(partes[1]);
+                            break;
+                        case "Cupos":
+                            cupos = Integer.parseInt(partes[1]);
+                            break;
+                        case "Horario":
+                            horario = partes[1];
+                            break;
+                    }   
+                                       // Si todas las propiedades se han encontrado, se puede crear el objeto Materia
+                                       if (nombre != null && horario != null && creditos > 0 && cupos > 0) {
+                                        return new Materia(nombre, creditos, cupos, horario);
+                                    }
+                                }
+                            }
+            
+                        } catch (IOException | NumberFormatException e) {
+                            System.err.println("Error al leer el archivo o formato incorrecto: " + e.getMessage());
+                        }
+                        return null;
+                    }
+                
+                    // Método para agregar la materia al archivo de Horario
+                    public void agregarMateriaAHorario(Materia materia) {
+                        String rutaHorario = "horario.txt";
+                        try (FileWriter fileWriter = new FileWriter(rutaHorario, true);
+                             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                            int cupoDisponible = materia.getCupoMaximo() - materia.getMateriasMatriculadas();
+                            if (cupoDisponible > 0) { // Verificar si hay cupo disponible
+                                bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
+                                bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
+                                bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
+                                bufferedWriter.write("Cupo Disponible: " + cupoDisponible + "\n");
+                                bufferedWriter.write("\n");
+                
+                                // Incrementar el contador de materias matriculadas
+                                materia.incrementarMateriasMatriculadas();
+                                // Decrementar el cupo máximo disponible
+                                materia.decrementarCupo();
+                
+                                System.out.println("Materia matriculada correctamente.");
+                            } else {
+                                System.out.println("No hay cupo disponible para esta materia.");
+                            }
+                        } catch (IOException e) {
+                            System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
+                        }
+                    }
+                }
+                
                     // Marcar como encontrado si se encuentra el ID
                     encontrado = true;
                     // Reiniciar las variables para evitar residuos de la búsqueda anterior
