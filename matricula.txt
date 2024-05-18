@@ -1,7 +1,7 @@
-CÛdigo: 1213
-Nombre: ASDAS
-CrÈditos m·ximos: 12
+C√≥digo: 01
+Nombre: Laura
+Cr√©ditos m√°ximos: 13
 Materias:
 - Materia: Calculo-Integral-302
   Horario: Martes:11:00-13:00
-  CrÈditos: 4
+  Cr√©ditos: 4

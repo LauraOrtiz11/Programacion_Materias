@@ -5,7 +5,7 @@
  */
 package inscribir_materias;
 
-import inscribir_materias.Ventanas.Ventana1;
+import Ventanas.Ventana1;
 
 /**
  * @author VALENTINA
@@ -17,9 +17,9 @@ public class Inscribir_Materias {
         
         ManejarArchivos manejarArchivos = new ManejarArchivos();
         manejarArchivos.crearArchivo();
-        manejarArchivos.matriEstudiante();
-        //Ventana1 ven = new Ventana1();
-        //ven.setVisible(true);
+        //manejarArchivos.matriEstudiante();
+        Ventana1 ven = new Ventana1();
+        ven.setVisible(true);
 
         
 
