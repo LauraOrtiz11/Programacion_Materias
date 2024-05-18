@@ -5,7 +5,7 @@
  */
 package inscribir_materias;
 
-import inscribir_materias.Ventanas.Ventana1;
+import Ventanas.Ventana1;
 
 /**
  * @author VALENTINA
