@@ -20,14 +20,17 @@ public class Lista_Materias extends javax.swing.JFrame {
     private List<Materia> materiasInscritas = new ArrayList<>();
     private int creditosMaximos = 18;  // Ejemplo de límite de créditos
     private String rutaArchivo = "datos_materias.txt";
+    private String rutaMatricula = "matricula.txt"; // Ruta del archivo de matrícula
+
     /**
      * Creates new form Lista_Materias
      */
- public Lista_Materias() {
+    public Lista_Materias() {
         initComponents();
         mostrarMaterias();
         setLocationRelativeTo(null);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,15 +105,24 @@ public class Lista_Materias extends javax.swing.JFrame {
 
     private void ButonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButonAñadirActionPerformed
         try {
-        // Obtén el texto del campo de texto
+            // Obtén el texto del campo de texto
             String text = TextID.getText();
     
-        // Convierte el texto a un número entero
+            // Convierte el texto a un número entero
             int idMateria = Integer.parseInt(text);
+<<<<<<< HEAD
         // Aquí puedes usar idMateria como necesites
         } catch (NumberFormatException e) {
         // Maneja la excepción si el texto no es un número válido            
              JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.PLAIN_MESSAGE);
+=======
+    
+            // Procesa la materia
+            procesarMateria(idMateria);
+        } catch (NumberFormatException e) {
+            // Maneja la excepción si el texto no es un número válido
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+>>>>>>> cdd0caad9f046f26dfc81d88ce052a2b4eeda721
         }
         
     }//GEN-LAST:event_ButonAñadirActionPerformed
@@ -125,7 +137,7 @@ public class Lista_Materias extends javax.swing.JFrame {
     }
 
     public void mostrarArchivo(String rutaArchivo) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
+       try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = bufferedReader.readLine()) != null) {
                 textAreaMaterias.append(linea + "\n");
@@ -135,12 +147,12 @@ public class Lista_Materias extends javax.swing.JFrame {
         }
     }
     private void procesarMateria(int idMateria) {
-        Materia materia = obtenerMateriaPorID(idMateria);
+       Materia materia = obtenerMateriaPorID(idMateria);
 
         if (materia != null) {
             // Verificar si la materia ya fue inscrita anteriormente
             if (materiasInscritas.contains(materia)) {
-                System.out.println("Ya está inscrito en esta materia.");
+                JOptionPane.showMessageDialog(this, "Ya está inscrito en esta materia.", "Error", JOptionPane.ERROR_MESSAGE);
                 return; // Salir del método
             }
 
@@ -154,7 +166,7 @@ public class Lista_Materias extends javax.swing.JFrame {
             }
 
             if (conflicto) {
-                System.out.println("Conflicto de horario con otra materia inscrita.");
+                JOptionPane.showMessageDialog(this, "Conflicto de horario con otra materia inscrita.", "Error", JOptionPane.ERROR_MESSAGE);
                 return; // Salir del método
             }
 
@@ -167,19 +179,31 @@ public class Lista_Materias extends javax.swing.JFrame {
                 agregarMateriaAHorario(materia);
                 materiasInscritas.add(materia); // Agregar la materia a la lista de inscritas
 
-                System.out.println("Materia matriculada correctamente.");
-                System.out.println("Créditos restantes: " + creditosMaximos);
-                System.out.println("Cupos restantes de " + materia.getNombre() + ": " + materia.getCupoMaximo());
+                JOptionPane.showMessageDialog(this, "Materia matriculada correctamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
+
+                // Guardar la información en el archivo de matrícula
+                guardarEnArchivoMatricula(materia);
             } else {
-                System.out.println("No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.");
+                JOptionPane.showMessageDialog(this, "No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            System.out.println("ID de materia no válido.");
+            JOptionPane.showMessageDialog(this, "ID de materia no válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void guardarEnArchivoMatricula(Materia materia) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaMatricula, true))) {
+            bufferedWriter.write("Materia: " + materia.getNombre() + "\n");
+            bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
+            bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
+            bufferedWriter.write("\n");
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo de matrícula: " + e.getMessage());
         }
     }
     
+    
     public Materia obtenerMateriaPorID(int idMateria) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
+      try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             String nombre = null;
             int creditos = 0;
@@ -237,11 +261,8 @@ public class Lista_Materias extends javax.swing.JFrame {
     }
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /*Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

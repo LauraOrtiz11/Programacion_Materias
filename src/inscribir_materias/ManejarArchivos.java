@@ -17,7 +17,7 @@ public class ManejarArchivos {
         String[] horarios = {"Martes:11:00-13:00", "Miércoles:11:00-13:00", "Lunes:07:00-10:00", "Martes:07:00-09:00", "Lunes:10:00-12:00", "Lunes:10:00-12:00", "Jueves:07:00-09:00", "Jueves:15:00-17:00", "Lunes:10:00-12:00", "Jueves:15:00-17:00", "Jueves:11:00-13:00", "Viernes:13:00-15:00"};
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaArchivo))) {
-            for (int i = 0; i < materias.length; i++) {
+            for (int i = 0; i < materias.length; i=i+1) {
                 bufferedWriter.write("Materia: " + materias[i] + "\n");
                 bufferedWriter.write("ID: " + id[i] + "\n");
                 bufferedWriter.write("Créditos: " + creditos[i] + "\n");
@@ -139,8 +139,8 @@ public class ManejarArchivos {
                 }
 
                 if (encontrado) {
-                    if (linea.startsWith("Materia: ")) {
-                        nombre = linea.substring(9).trim();
+                    if (linea.startsWith("Materia: ")) { 
+                        nombre = linea.substring(9).trim(); 
                     } else if (linea.startsWith("Créditos: ")) {
                         creditos = Integer.parseInt(linea.substring(10).trim());
                     } else if (linea.startsWith("Cupos: ")) {
