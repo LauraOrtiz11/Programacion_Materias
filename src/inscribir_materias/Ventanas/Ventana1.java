@@ -89,21 +89,17 @@ public class Ventana1 extends javax.swing.JFrame {
                 .addComponent(LabelMatricula)
                 .addGap(181, 181, 181))
             .addGroup(PanelLayout.createSequentialGroup()
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(126, 126, 126)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelLayout.createSequentialGroup()
-                                .addComponent(Labelnombre_Estudiante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TextNombre_Estudiante))
-                            .addGroup(PanelLayout.createSequentialGroup()
-                                .addComponent(LabelCodigo)
-                                .addGap(18, 18, 18)
-                                .addComponent(TextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(Labelnombre_Estudiante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TextNombre_Estudiante))
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(BotonInscribir)))
+                        .addComponent(LabelCodigo)
+                        .addGap(18, 18, 18)
+                        .addComponent(TextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotonInscribir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
@@ -143,8 +139,13 @@ public class Ventana1 extends javax.swing.JFrame {
         String Nombre = TextNombre_Estudiante.getText();
         Estudiante obj = new Estudiante(codigo, Nombre, 18);
         
+        //Abrir ventana de lista de estudiantes 
+
         Lista_Materias listaMaterias = new Lista_Materias();
         listaMaterias.setVisible(true);
+
+        // Cerrar la ventana actual
+        dispose();
         
     }//GEN-LAST:event_BotonInscribirActionPerformed
 
@@ -153,7 +154,7 @@ public class Ventana1 extends javax.swing.JFrame {
     }//GEN-LAST:event_TextCodigoActionPerformed
 
     private void TextNombre_EstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNombre_EstudianteActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_TextNombre_EstudianteActionPerformed
 
     /**
@@ -202,9 +203,5 @@ public class Ventana1 extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 
-    private static class BotonInscribirAction {
 
-        public BotonInscribirAction() {
-        }
-    }
 }

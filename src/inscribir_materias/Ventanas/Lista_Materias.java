@@ -1,12 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package inscribir_materias.Ventanas;
+
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ *
+ * @author VALENTINA
+ */
 public class Lista_Materias extends javax.swing.JFrame {
-
-    private JTextArea textAreaMaterias;
 
     public Lista_Materias() {
         initComponents();
@@ -69,14 +77,17 @@ public class Lista_Materias extends javax.swing.JFrame {
 
     private void mostrarMaterias() {
         String rutaArchivo = "datos_materias.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+        mostrarArchivo(rutaArchivo);
+    }
+
+    public void mostrarArchivo(String rutaArchivo) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
-            while ((linea = br.readLine()) != null) {
+            while ((linea = bufferedReader.readLine()) != null) {
                 textAreaMaterias.append(linea + "\n");
             }
         } catch (IOException e) {
-            e.printStackTrace();
-            textAreaMaterias.append("No se pudo leer el archivo de materias.\n");
+            textAreaMaterias.append("Error al leer el archivo: " + e.getMessage() + "\n");
         }
     }
 
@@ -88,4 +99,7 @@ public class Lista_Materias extends javax.swing.JFrame {
 
     private javax.swing.JLabel LabelLista_Materias;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTextArea textAreaMaterias;
+
 }

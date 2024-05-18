@@ -23,12 +23,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+        <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
+        </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+        <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+        </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -36,35 +40,53 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="66" type="rgb"/>
+          <Color blue="255" green="153" red="102" type="rgb"/>
         </Property>
       </Properties>
-
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="158" max="32767" attributes="0"/>
-                  <Component id="LabelLista_Materias" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-              </Group>
+            <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+              <Component id="LabelLista_Materias" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="150" max="32767" attributes="0"/>
+            </Group>
+            <Group type="102" alignment="0" attributes="0">
+              <Component id="scrollPane" min="-2" max="-2" attributes="0"/>
+            </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="LabelLista_Materias" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="313" max="32767" attributes="0"/>
-              </Group>
+            <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="LabelLista_Materias" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+            </Group>
+            <Group type="102" alignment="0" attributes="0">
+              <Component id="scrollPane" min="-2" pref="250" max="32767" attributes="0"/>
+            </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="LabelLista_Materias">
           <Properties>
-            <Property name="text" type="java.lang.String" value="LISTA DE MATERIAS"/>
+            <Property name="text" type="java.lang.String" value="LISTA DE MATERIAS "/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JScrollPane" name="scrollPane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout" value=""/>
+          </Constraints>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="textAreaMaterias">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Component>
       </SubComponents>
     </Container>

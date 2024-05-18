@@ -89,10 +89,7 @@ public class ManejarArchivos {
         }
     }
 
-    
-
-    // Método para mostrar el archivo de materi
-}
+    // Método para mostrar el archivo de materia
 
     //Lista de datos academicos
 
@@ -182,3 +179,4 @@ public class ManejarArchivos {
                         }
                     }
                 }
+                
