@@ -5,18 +5,14 @@ public class Materia {
     private int creditos;
     private int cupoMaximo;
     private String horario;
-    private int materiasMatriculadas;
+  
 
     public Materia(String nombre, int creditos, int cupoMaximo, String horario) {
         this.nombre = nombre;
         this.creditos = creditos;
         this.cupoMaximo = cupoMaximo;
         this.horario = horario;
-        this.materiasMatriculadas = 0;
-    }
 
-    // Constructor vacío
-    public Materia() {
     }
 
     public String getNombre() {
@@ -35,15 +31,15 @@ public class Materia {
         return horario;
     }
 
-    public int getMateriasMatriculadas() {
-        return materiasMatriculadas;
+    public int decrementarCupo() {
+        if (cupoMaximo > 0) {
+            cupoMaximo--;
+            return cupoMaximo;
+        } else {
+            return -1; // Devolver un valor negativo para indicar que no hay cupo disponible
+        }
     }
 
-    public void incrementarMateriasMatriculadas() {
-        this.materiasMatriculadas++;
-    }
-    
-    public void decrementarCupo() {
-        this.cupoMaximo--;
-    }
+
 }
+
