@@ -1,4 +1,0 @@
-Codigo: 01
-Nombre: Laura
-Creditos Maximos: 18
-Materias Matriculadas:
