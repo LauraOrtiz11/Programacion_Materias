@@ -3,18 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Ventanas;
+package inscribir_materias;
+
+
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author VALENTINA
  */
 public class Lista_Materias extends javax.swing.JFrame {
-
+    private List<Materia> materiasInscritas = new ArrayList<>();
+    private int creditosMaximos = 18;  // Ejemplo de límite de créditos
+    private String rutaArchivo = "datos_materias.txt";
     /**
      * Creates new form Lista_Materias
      */
@@ -39,7 +45,7 @@ public class Lista_Materias extends javax.swing.JFrame {
         LabelIndicaciones = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         TextID = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        ButonAñadir = new javax.swing.JButton();
         ImagenVentana1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,14 +84,14 @@ public class Lista_Materias extends javax.swing.JFrame {
         TextID.setBackground(new java.awt.Color(255, 222, 157));
         getContentPane().add(TextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 70, -1));
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 102));
-        jButton1.setText("Añadir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ButonAñadir.setBackground(new java.awt.Color(153, 255, 102));
+        ButonAñadir.setText("Añadir");
+        ButonAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ButonAñadirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+        getContentPane().add(ButonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
 
         ImagenVentana1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagen_Ventana1.jpg"))); // NOI18N
         ImagenVentana1.setText("LISTA MATERIAS");
@@ -95,14 +101,22 @@ public class Lista_Materias extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ButonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButonAñadirActionPerformed
+        try {
+        // Obtén el texto del campo de texto
+            String text = TextID.getText();
+    
+        // Convierte el texto a un número entero
+            int idMateria = Integer.parseInt(text);
+    
+        // Aquí puedes usar idMateria como necesites
+            System.out.println("El ID de la materia es: " + idMateria);
+        } catch (NumberFormatException e) {
+        // Maneja la excepción si el texto no es un número válido
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+        }
         
-        String nombre;
-   int creditos;
-    int cupoMaximo;
-   String horario;
-   int materiasMatriculadas;
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ButonAñadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +137,108 @@ public class Lista_Materias extends javax.swing.JFrame {
             textAreaMaterias.append("Error al leer el archivo: " + e.getMessage() + "\n");
         }
     }
+    private void procesarMateria(int idMateria) {
+        Materia materia = obtenerMateriaPorID(idMateria);
+
+        if (materia != null) {
+            // Verificar si la materia ya fue inscrita anteriormente
+            if (materiasInscritas.contains(materia)) {
+                System.out.println("Ya está inscrito en esta materia.");
+                return; // Salir del método
+            }
+
+            // Verificar conflicto de horario
+            boolean conflicto = false;
+            for (Materia inscrita : materiasInscritas) {
+                if (materia.conflictoHorario(inscrita)) {
+                    conflicto = true;
+                    break;
+                }
+            }
+
+            if (conflicto) {
+                System.out.println("Conflicto de horario con otra materia inscrita.");
+                return; // Salir del método
+            }
+
+            // Verificar si hay créditos suficientes y cupos disponibles
+            if (creditosMaximos >= materia.getCreditos() && materia.getCupoMaximo() > 0) {
+                creditosMaximos -= materia.getCreditos();
+                textAreaMaterias.append("- Materia: " + materia.getNombre() + "\n");
+                textAreaMaterias.append("  Horario: " + materia.getHorario() + "\n");
+                textAreaMaterias.append("  Créditos: " + materia.getCreditos() + "\n");
+                agregarMateriaAHorario(materia);
+                materiasInscritas.add(materia); // Agregar la materia a la lista de inscritas
+
+                System.out.println("Materia matriculada correctamente.");
+                System.out.println("Créditos restantes: " + creditosMaximos);
+                System.out.println("Cupos restantes de " + materia.getNombre() + ": " + materia.getCupoMaximo());
+            } else {
+                System.out.println("No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.");
+            }
+        } else {
+            System.out.println("ID de materia no válido.");
+        }
+    }
+    
+    public Materia obtenerMateriaPorID(int idMateria) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            String nombre = null;
+            int creditos = 0;
+            int cupos = 0;
+            String horario = null;
+            boolean encontrado = false;
+
+            while ((linea = bufferedReader.readLine()) != null) {
+                linea = linea.trim();
+                if (linea.startsWith("ID: " + idMateria)) {
+                    encontrado = true;
+                } else if (linea.startsWith("ID: ") && encontrado) {
+                    break;
+                }
+
+                if (encontrado) {
+                    if (linea.startsWith("Materia: ")) {
+                        nombre = linea.substring(9).trim();
+                    } else if (linea.startsWith("Créditos: ")) {
+                        creditos = Integer.parseInt(linea.substring(10).trim());
+                    } else if (linea.startsWith("Cupos: ")) {
+                        cupos = Integer.parseInt(linea.substring(7).trim());
+                    } else if (linea.startsWith("Horario: ")) {
+                        horario = linea.substring(9).trim();
+                    }
+
+                    if (nombre != null && horario != null && creditos > 0 && cupos > 0) {
+                        return new Materia(nombre, creditos, cupos, horario);
+                    }
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo o formato incorrecto: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    public void agregarMateriaAHorario(Materia materia) {
+        String rutaHorario = "horario.txt";
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaHorario, true))) {
+            int cupoDisponible = materia.decrementarCupo();
+            if (cupoDisponible >= 0) {
+                bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
+                bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
+                bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
+                bufferedWriter.write("Cupo Disponible: " + cupoDisponible + "\n");
+                bufferedWriter.write("\n");
+                System.out.println("Materia matriculada correctamente.");
+            } else {
+                System.out.println("No hay cupo disponible para esta materia.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -156,12 +272,12 @@ public class Lista_Materias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButonAñadir;
     private javax.swing.JLabel ImagenVentana1;
     private javax.swing.JLabel LabelIndicaciones;
     private javax.swing.JLabel Label_ListaMaterias;
     private javax.swing.JScrollPane Scroll_listadoMa;
     private javax.swing.JTextField TextID;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextArea textAreaMaterias;
     // End of variables declaration//GEN-END:variables

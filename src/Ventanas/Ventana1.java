@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import inscribir_materias.Lista_Materias;
 import inscribir_materias.Estudiante;
 /**
  *
