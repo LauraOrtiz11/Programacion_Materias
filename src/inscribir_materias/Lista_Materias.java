@@ -24,6 +24,9 @@ public class Lista_Materias extends javax.swing.JFrame {
     private int creditosMaximos = 18;  // Ejemplo de límite de créditos
     private String rutaArchivo = "datos_materias.txt";
     private String rutaMatricula = "matricula.txt"; // Ruta del archivo de matrícula
+    // Variables para almacenar nombre y código del estudiante
+    public static String nombreEstudiante;
+    public static String codigoEstudiante;
 
     /**
      * Creates new form Lista_Materias
@@ -100,7 +103,7 @@ public class Lista_Materias extends javax.swing.JFrame {
         getContentPane().add(ButonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
 
         BotonVerReporte.setBackground(new java.awt.Color(255, 153, 51));
-        BotonVerReporte.setText("Ver Horario");
+        BotonVerReporte.setText("Terminar");
         BotonVerReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonVerReporteActionPerformed(evt);
@@ -120,16 +123,16 @@ public class Lista_Materias extends javax.swing.JFrame {
         try {
             // Obtén el texto del campo de texto
             String text = TextID.getText();
-    
+
             // Convierte el texto a un número entero
             int idMateria = Integer.parseInt(text);
-    
+
             // Procesa la materia
             procesarMateria(idMateria);
         } catch (NumberFormatException e) {
             // Maneja la excepción si el texto no es un número válido
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
-    
+
         }
         
     }//GEN-LAST:event_ButonAñadirActionPerformed
@@ -155,6 +158,7 @@ public class Lista_Materias extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        dispose();
     }//GEN-LAST:event_BotonVerReporteActionPerformed
 
     /**
@@ -252,14 +256,16 @@ public class Lista_Materias extends javax.swing.JFrame {
 
     private void guardarEnArchivoMatricula(Materia materia) {
     try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaMatricula, true))) {
-        bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
-        bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
-        bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
-        bufferedWriter.write("Cupo Disponible: " + materia.getCupoMaximo() + "\n");
-        bufferedWriter.write("\n");
-    } catch (IOException e) {
-        System.err.println("Error al escribir en el archivo de matrícula: " + e.getMessage());
-    }
+            bufferedWriter.write("Nombre del Estudiante: " + nombreEstudiante + "\n");
+            bufferedWriter.write("Código del Estudiante: " + codigoEstudiante + "\n");
+            bufferedWriter.write("Nombre de la Materia: " + materia.getNombre() + "\n");
+            bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
+            bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
+            bufferedWriter.write("Cupo Disponible: " + materia.getCupoMaximo() + "\n");
+            bufferedWriter.write("\n");
+        } catch (IOException e) {
+            System.err.println("Error al escribir en el archivo de matrícula: " + e.getMessage());
+        }
 }
 
     
@@ -315,21 +321,32 @@ public class Lista_Materias extends javax.swing.JFrame {
     
     public void agregarMateriaAHorario(Materia materia) {
         String rutaHorario = "horario.txt";
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaHorario, true))) {
-            int cupoDisponible = materia.decrementarCupo();
-            if (cupoDisponible >= 0) {
-                bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
-                bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
-                bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
-                bufferedWriter.write("Cupo Disponible: " + cupoDisponible + "\n");
-                bufferedWriter.write("\n");
-                System.out.println("Materia matriculada correctamente.");
-            } else {
-                System.out.println("No hay cupo disponible para esta materia.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
+    try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaHorario, true))) {
+        File file = new File(rutaHorario);
+        boolean archivoVacio = file.length() == 0; // Verifica si el archivo está vacío
+
+        // Verifica si el archivo está vacío antes de escribir el nombre y el código del estudiante
+        if (archivoVacio) {
+            bufferedWriter.write("=====================================\n");
+            bufferedWriter.write("Nombre del Estudiante: " + nombreEstudiante + "\n");
+            bufferedWriter.write("Código del Estudiante: " + codigoEstudiante + "\n");
+            bufferedWriter.write("-------------------------------------\n");
         }
+
+        int cupoDisponible = materia.decrementarCupo();
+        if (cupoDisponible >= 0) {
+            bufferedWriter.write("| " + "Nombre: " + materia.getNombre() + "\n");
+            bufferedWriter.write("| " + "Horario: " + materia.getHorario() + "\n");
+            bufferedWriter.write("| " + "Créditos: " + materia.getCreditos() + "\n");
+            bufferedWriter.write("| " + "Cupo Disponible: " + cupoDisponible + "\n");
+            bufferedWriter.write("-------------------------------------\n");
+            System.out.println("Materia matriculada correctamente.");
+        } else {
+            System.out.println("No hay cupo disponible para esta materia.");
+        }
+    } catch (IOException e) {
+        System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
+    }
     }
     
     public static void main(String args[]) {
