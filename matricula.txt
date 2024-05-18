@@ -1,9 +1,2 @@
 
-Materia: Calculo-Integral-301
-Horario: Martes:11:00-13:00
-Créditos: 4
-
-Materia: Ciudadania-T1
-Horario: Viernes:13:00-15:00
-Créditos: 2
 
