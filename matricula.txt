@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 Nombre: Calculo-Integral-301
+=======
+
+Materia: Calculo-Integral-301
+>>>>>>> origin/Laura
 Horario: Martes:11:00-13:00
 Créditos: 4
 Cupo Disponible: 29
@@ -27,4 +32,8 @@ Nombre: Fisica-II-301
 Horario: Lunes:10:00-12:00
 Créditos: 4
 Cupo Disponible: 29
+
+Materia: Ciudadania-T1
+Horario: Viernes:13:00-15:00
+Créditos: 2
 

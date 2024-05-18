@@ -10,7 +10,7 @@ Créditos: 4
 Cupos: 30
 Horario: Miércoles:11:00-13:00
 
-Materia: Programacion-II-301
+Materia: Programacºion-II-301
 ID: 3
 Créditos: 3
 Cupos: 30

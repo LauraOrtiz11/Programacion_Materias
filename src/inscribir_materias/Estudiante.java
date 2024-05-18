@@ -9,7 +9,6 @@ public class Estudiante {
     private int creditosMaximos;
     
     public Estudiante(String codigo, String nombre, int creditosMaximos) {
-        // Validación de datos al construir el objeto Estudiante
         if (codigo == null || codigo.isEmpty()) {
             throw new IllegalArgumentException("El código de estudiante no puede estar vacío.");
         }
@@ -22,16 +21,11 @@ public class Estudiante {
         
         this.codigo = codigo;
         this.nombre = nombre;
-        this.creditosMaximos = creditosMaximos;
+        this.creditosMaximos = 18;
         this.materiasMatriculadas = new ArrayList<>();
     }
 
-    public boolean matricularMateria(Materia materia) throws Exception {
-        // Implementa la lógica para matricular una materia aquí
-        return true;
-    }
 
-    // Otros métodos de la clase Estudiante
 
     public String getCodigo() {
         return codigo;
@@ -48,4 +42,4 @@ public class Estudiante {
     public ArrayList<Materia> getMateriasMatriculadas() {
         return materiasMatriculadas;
     }
-}   
+}

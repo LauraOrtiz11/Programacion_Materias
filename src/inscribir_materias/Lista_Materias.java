@@ -6,13 +6,15 @@
 package inscribir_materias;
 
 
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 /**
  *
  * @author VALENTINA
@@ -49,6 +51,7 @@ public class Lista_Materias extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         TextID = new javax.swing.JTextField();
         ButonAñadir = new javax.swing.JButton();
+        BotonVerReporte = new javax.swing.JButton();
         ImagenVentana1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,7 +88,7 @@ public class Lista_Materias extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 310, 20));
 
         TextID.setBackground(new java.awt.Color(255, 222, 157));
-        getContentPane().add(TextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 70, -1));
+        getContentPane().add(TextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
         ButonAñadir.setBackground(new java.awt.Color(153, 255, 102));
         ButonAñadir.setText("Añadir");
@@ -94,7 +97,16 @@ public class Lista_Materias extends javax.swing.JFrame {
                 ButonAñadirActionPerformed(evt);
             }
         });
-        getContentPane().add(ButonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+        getContentPane().add(ButonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+
+        BotonVerReporte.setBackground(new java.awt.Color(255, 153, 51));
+        BotonVerReporte.setText("Ver Horario");
+        BotonVerReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVerReporteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonVerReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
 
         ImagenVentana1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagen_Ventana1.jpg"))); // NOI18N
         ImagenVentana1.setText("LISTA MATERIAS");
@@ -117,9 +129,33 @@ public class Lista_Materias extends javax.swing.JFrame {
         } catch (NumberFormatException e) {
             // Maneja la excepción si el texto no es un número válido
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+    
         }
         
     }//GEN-LAST:event_ButonAñadirActionPerformed
+
+    private void BotonVerReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVerReporteActionPerformed
+            String rutaHorario = "horario.txt";
+
+        try {
+            // Verifica si Desktop es compatible con el sistema actual
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                File file = new File(rutaHorario);
+
+                // Verifica si el archivo existe
+                if (file.exists()) {
+                    desktop.open(file); // Abre el archivo con el visor de texto predeterminado
+                } else {
+                    System.out.println("El archivo no existe.");
+                }
+            } else {
+                System.out.println("Desktop no es compatible con este sistema.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_BotonVerReporteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +176,7 @@ public class Lista_Materias extends javax.swing.JFrame {
             textAreaMaterias.append("Error al leer el archivo: " + e.getMessage() + "\n");
         }
     }
-    private void procesarMateria(int idMateria) {
+   private void procesarMateria(int idMateria) {
     Materia materia;
 
     if (idMateria == 1) {
@@ -326,6 +362,7 @@ public class Lista_Materias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonVerReporte;
     private javax.swing.JButton ButonAñadir;
     private javax.swing.JLabel ImagenVentana1;
     private javax.swing.JLabel LabelIndicaciones;

@@ -7,6 +7,9 @@ package Ventanas;
 
 import inscribir_materias.Lista_Materias;
 import inscribir_materias.Estudiante;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 /**
  *
  * @author VALENTINA
@@ -76,18 +79,31 @@ public class Ventana1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInscribirActionPerformed
-
-        String codigo =TextCodigo.getText();
-        String Nombre = TextNombre_Estudiante.getText();
-        Estudiante obj = new Estudiante(codigo, Nombre, 18);
         
-        //Abrir ventana de lista de estudiantes 
-        Lista_Materias listaMaterias = new Lista_Materias();
-        listaMaterias.setVisible(true);
+        try {
+            // Obtener el código y el nombre del estudiante
+            String codigo = TextCodigo.getText();
+            String nombre = TextNombre_Estudiante.getText();
 
-        // Cerrar la ventana actual
-        dispose();
-        
+            // Verificar que el código sea un número
+            int codigoInt = Integer.parseInt(codigo);
+
+            // Si el código es un número, crear una instancia de Estudiante
+            Estudiante estudiante = new Estudiante(codigo, nombre, 18);
+
+            // Abrir la ventana de lista de materias
+            Lista_Materias listaMaterias = new Lista_Materias();
+             // Pasar el estudiante a la lista de materias
+            listaMaterias.setVisible(true);
+            // Cerrar la ventana actual
+            dispose();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            // Capturar la excepción si el nombre está vacío
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un nombre válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_BotonInscribirActionPerformed
 
     /**
