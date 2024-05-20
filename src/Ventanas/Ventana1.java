@@ -61,7 +61,7 @@ public class Ventana1 extends javax.swing.JFrame {
         getContentPane().add(TextCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 90, -1));
         getContentPane().add(TextNombre_Estudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 110, -1));
 
-        BotonInscribir.setBackground(new java.awt.Color(102, 102, 0));
+        BotonInscribir.setBackground(new java.awt.Color(130, 89, 18));
         BotonInscribir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotonInscribir.setText("Inscribir Materias");
         BotonInscribir.addActionListener(new java.awt.event.ActionListener() {

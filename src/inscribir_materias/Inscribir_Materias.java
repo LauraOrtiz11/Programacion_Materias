@@ -19,12 +19,7 @@ public class Inscribir_Materias {
         
         ManejarArchivos manejarArchivos = new ManejarArchivos();
         manejarArchivos.crearArchivo();
-        //manejarArchivos.matriEstudiante();
         Ventana1 ven = new Ventana1();
         ven.setVisible(true);
-
-        
-
-        
     }
 }
