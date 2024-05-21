@@ -7,8 +7,6 @@ package inscribir_materias;
 
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +22,7 @@ public class Lista_Materias extends javax.swing.JFrame {
     private int creditosMaximos = 18;  // Ejemplo de límite de créditos
     private String rutaArchivo = "datos_materias.txt";
     private String rutaMatricula = "matricula.txt"; // Ruta del archivo de matrícula
+    
     // Variables para almacenar nombre y código del estudiante
     public static String nombreEstudiante;
     public static String codigoEstudiante;
