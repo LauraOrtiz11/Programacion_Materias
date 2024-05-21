@@ -18,11 +18,10 @@ import java.io.IOException;
  * @author VALENTINA
  */
 public class Lista_Materias extends javax.swing.JFrame {
-    private List<Materia> materiasInscritas = new ArrayList<>();
+    private List <Materia> materiasInscritas = new ArrayList<>();
     private int creditosMaximos = 18;  // Ejemplo de límite de créditos
     private String rutaArchivo = "datos_materias.txt";
     private String rutaMatricula = "matricula.txt"; // Ruta del archivo de matrícula
-    
     // Variables para almacenar nombre y código del estudiante
     public static String nombreEstudiante;
     public static String codigoEstudiante;
@@ -90,6 +89,11 @@ public class Lista_Materias extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 310, 20));
 
         TextID.setBackground(new java.awt.Color(255, 222, 157));
+        TextID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextIDActionPerformed(evt);
+            }
+        });
         getContentPane().add(TextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, -1));
 
         ButonAñadir.setBackground(new java.awt.Color(153, 255, 102));
@@ -140,7 +144,7 @@ public class Lista_Materias extends javax.swing.JFrame {
             String rutaHorario = "horario.txt";
 
         try {
-            // Verifica si Desktop es compatible con el sistema actual
+
             if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();
                 File file = new File(rutaHorario);
@@ -159,6 +163,10 @@ public class Lista_Materias extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_BotonVerReporteActionPerformed
+
+    private void TextIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +187,7 @@ public class Lista_Materias extends javax.swing.JFrame {
             textAreaMaterias.append("Error al leer el archivo: " + e.getMessage() + "\n");
         }
     }
+    
    private void procesarMateria(int idMateria) {
     Materia materia;
 
@@ -246,7 +255,7 @@ public class Lista_Materias extends javax.swing.JFrame {
             // Guardar la información en el archivo de matrícula
             guardarEnArchivoMatricula(materia);
         } else {
-            JOptionPane.showMessageDialog(this, "No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     } else {
         JOptionPane.showMessageDialog(this, "ID de materia no válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -349,27 +358,7 @@ public class Lista_Materias extends javax.swing.JFrame {
     }
     
     public static void main(String args[]) {
-        /*Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Lista_Materias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Lista_Materias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Lista_Materias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Lista_Materias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Lista_Materias().setVisible(true);
