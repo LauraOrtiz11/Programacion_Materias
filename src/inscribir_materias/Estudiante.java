@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Estudiante {
     private String codigo;
     private String nombre;
-    private ArrayList<Materia> materiasMatriculadas;
-    private int creditosMaximos;
+
     
     public Estudiante(String codigo, String nombre, int creditosMaximos) {
         if (codigo == null || codigo.isEmpty()) {
@@ -18,11 +17,8 @@ public class Estudiante {
         if (creditosMaximos <= 0) {
             throw new IllegalArgumentException("Los créditos máximos deben ser un valor positivo.");
         }
-        
         this.codigo = codigo;
         this.nombre = nombre;
-        this.creditosMaximos = 18;
-        this.materiasMatriculadas = new ArrayList<>();
     }
 
 
@@ -35,11 +31,4 @@ public class Estudiante {
         return nombre;
     }
 
-    public int getCreditosMaximos() {
-        return creditosMaximos;
-    }
-
-    public ArrayList<Materia> getMateriasMatriculadas() {
-        return materiasMatriculadas;
-    }
 }

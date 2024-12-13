@@ -61,7 +61,7 @@ public class Ventana1 extends javax.swing.JFrame {
         getContentPane().add(TextCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 90, -1));
         getContentPane().add(TextNombre_Estudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 110, -1));
 
-        BotonInscribir.setBackground(new java.awt.Color(102, 102, 0));
+        BotonInscribir.setBackground(new java.awt.Color(130, 89, 18));
         BotonInscribir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotonInscribir.setText("Inscribir Materias");
         BotonInscribir.addActionListener(new java.awt.event.ActionListener() {
@@ -91,9 +91,13 @@ public class Ventana1 extends javax.swing.JFrame {
             // Si el código es un número, crear una instancia de Estudiante
             Estudiante estudiante = new Estudiante(codigo, nombre, 18);
 
+            // Asignar valores a las variables globales en Lista_Materias
+            Lista_Materias.nombreEstudiante = nombre;
+            Lista_Materias.codigoEstudiante = codigo;
+
             // Abrir la ventana de lista de materias
             Lista_Materias listaMaterias = new Lista_Materias();
-             // Pasar el estudiante a la lista de materias
+            // Pasar el estudiante a la lista de materias
             listaMaterias.setVisible(true);
             // Cerrar la ventana actual
             dispose();

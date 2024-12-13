@@ -8,7 +8,9 @@ package inscribir_materias;
 import Ventanas.Ventana1;
 
 /**
- * @author VALENTINA
+ * @author Laura Valentina Ortiz Bustos
+ Nicolas Felipe Gonzalez Bello 
+ Joseph Santiago Morales Carrillo 
  */
 
 public class Inscribir_Materias {
@@ -17,12 +19,7 @@ public class Inscribir_Materias {
         
         ManejarArchivos manejarArchivos = new ManejarArchivos();
         manejarArchivos.crearArchivo();
-        //manejarArchivos.matriEstudiante();
         Ventana1 ven = new Ventana1();
         ven.setVisible(true);
-
-        
-
-        
     }
 }

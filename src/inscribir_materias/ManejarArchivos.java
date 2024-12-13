@@ -1,12 +1,9 @@
 package inscribir_materias;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ManejarArchivos {
     private final String rutaArchivo = "datos_materias.txt";
-    private final String rutaMatricula = "matricula.txt";
 
     // Método para crear el archivo de materias
     public void crearArchivo() {
@@ -28,155 +25,6 @@ public class ManejarArchivos {
             System.out.println("Archivo creado satisfactoriamente.");
         } catch (IOException e) {
             System.err.println("Error al escribir en el archivo: " + e.getMessage());
-        }
-    }
-
-    // Método para manejar la matrícula del estudiante
-    public void matriEstudiante() {
-        try (PrintWriter linea = new PrintWriter(new FileWriter(rutaMatricula, true));
-             BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-
-            System.out.println("Digite código:");
-            String codigo = br.readLine();
-            System.out.println("Digite nombre:");
-            String nombre = br.readLine();
-            System.out.println("Digite créditos máximos:");
-            int creditosMaximos = Integer.parseInt(br.readLine());
-
-            linea.println("Código: " + codigo);
-            linea.println("Nombre: " + nombre);
-            linea.println("Créditos máximos: " + creditosMaximos);
-            linea.println("Materias:");
-
-            List<Materia> materiasInscritas = new ArrayList<>(); // Lista para almacenar las materias inscritas
-
-            while (true) {
-                System.out.println("¿Desea agregar una materia? (si/no):");
-                String respuesta = br.readLine();
-
-                if (!respuesta.equalsIgnoreCase("si")) {
-                    break;
-                }
-
-                mostrarArchivo(rutaArchivo);
-                System.out.println("Digite el ID de la materia:");
-                int idMateria = Integer.parseInt(br.readLine());
-                Materia materia = obtenerMateriaPorID(idMateria);
-
-                if (materia != null) {
-                    // Verificar si la materia ya fue inscrita anteriormente
-                    if (materiasInscritas.contains(materia)) {
-                        System.out.println("Ya está inscrito en esta materia.");
-                        continue; // Continuar con el siguiente ciclo
-                    }
-
-                    // Verificar conflicto de horario
-                    boolean conflicto = false;
-                    for (Materia inscrita : materiasInscritas) {
-                        if (materia.conflictoHorario(inscrita)) {
-                            conflicto = true;
-                            break;
-                        }
-                    }
-
-                    if (conflicto) {
-                        System.out.println("Conflicto de horario con otra materia inscrita.");
-                        continue; // Continuar con el siguiente ciclo
-                    }
-
-                    // Verificar si hay créditos suficientes y cupos disponibles
-                    if (creditosMaximos >= materia.getCreditos() && materia.getCupoMaximo() > 0) {
-                        creditosMaximos -= materia.getCreditos();
-                        linea.println("- Materia: " + materia.getNombre());
-                        linea.println("  Horario: " + materia.getHorario());
-                        linea.println("  Créditos: " + materia.getCreditos());
-                        agregarMateriaAHorario(materia);
-                        materiasInscritas.add(materia); // Agregar la materia a la lista de inscritas
-
-                        System.out.println("Materia matriculada correctamente.");
-                        System.out.println("Créditos restantes: " + creditosMaximos);
-                        System.out.println("Cupos restantes de " + materia.getNombre() + ": " + materia.getCupoMaximo());
-                    } else {
-                        System.out.println("No se puede matricular la materia. Créditos insuficientes o no hay cupos disponibles.");
-                    }
-                } else {
-                    System.out.println("ID de materia no válido.");
-                }
-            }
-            System.out.println("Matrícula realizada correctamente.");
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Error creando o cerrando el archivo: " + e.getMessage());
-        }
-    }
-
-    // Método para mostrar el archivo de materias
-    public void mostrarArchivo(String rutaArchivo) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            while ((linea = bufferedReader.readLine()) != null) {
-                System.out.println(linea);
-            }
-        } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
-        }
-    }
-
-    public Materia obtenerMateriaPorID(int idMateria) {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(rutaArchivo))) {
-            String linea;
-            String nombre = null;
-            int creditos = 0;
-            int cupos = 0;
-            String horario = null;
-            boolean encontrado = false;
-
-            while ((linea = bufferedReader.readLine()) != null) {
-                linea = linea.trim();
-                if (linea.startsWith("ID: " + idMateria)) {
-                    encontrado = true;
-                } else if (linea.startsWith("ID: ") && encontrado) {
-                    break;
-                }
-
-                if (encontrado) {
-                    if (linea.startsWith("Materia: ")) { 
-                        nombre = linea.substring(9).trim(); 
-                    } else if (linea.startsWith("Créditos: ")) {
-                        creditos = Integer.parseInt(linea.substring(10).trim());
-                    } else if (linea.startsWith("Cupos: ")) {
-                        cupos = Integer.parseInt(linea.substring(7).trim());
-                    } else if (linea.startsWith("Horario: ")) {
-                        horario = linea.substring(9).trim();
-                    }
-
-                    if (nombre != null && horario != null && creditos > 0 && cupos > 0) {
-                        return new Materia(nombre, creditos, cupos, horario);
-                    }
-                }
-            }
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Error al leer el archivo o formato incorrecto: " + e.getMessage());
-        }
-        return null;
-    }
-
-    // Método para agregar la materia al archivo de Horario
-    public void agregarMateriaAHorario(Materia materia) {
-        String rutaHorario = "horario.txt";
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rutaHorario, true))) {
-            int cupoDisponible = materia.decrementarCupo();
-            if (cupoDisponible >= 0) {
-                bufferedWriter.write("Nombre: " + materia.getNombre() + "\n");
-                bufferedWriter.write("Horario: " + materia.getHorario() + "\n");
-                bufferedWriter.write("Créditos: " + materia.getCreditos() + "\n");
-                bufferedWriter.write("Cupo Disponible: " + cupoDisponible + "\n");
-                bufferedWriter.write("\n");
-                System.out.println("Materia matriculada correctamente.");
-            } else {
-                System.out.println("No hay cupo disponible para esta materia.");
-            }
-        } catch (IOException e) {
-            System.err.println("Error al escribir en el archivo de horario: " + e.getMessage());
         }
     }
 }
